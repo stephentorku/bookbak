@@ -1,0 +1,16 @@
+body{
+    background-image: url(images/library-dark.jpg);
+}
+
+
+.books{
+    widows: 50%;
+    background-color: white;
+    color: red;
+    margin-bottom: 20px;
+    display: block; 
+    margin: auto;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;    
+}
