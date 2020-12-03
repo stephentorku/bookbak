@@ -58,20 +58,20 @@ include('navbar.php');
                     $db = $database->getConnection();
                         
                     $user = new User($db);
-                    // $query_run = $user->allusers();
+                    $query_run = $user->allusers();
 
                     $users = new User($db);
                     // Return the number of rows in result set
-                    // $UserRowCount=$query_run->rowCount();
+                    $UserRowCount=$query_run->rowCount();
 
                     //for bus ride count
                     $book = new books($db);
-                    // $stmt = $rides->AllRides();
-                    // $stmtday = $rides->DayRides();
+                    $stmt = $book->allbooks();
+                    $stmtday = $book->DayBooks();
                     
                     // Return the number of rows in result set
-                    // $RideRowCount=$stmt->rowCount();
-                    // $DayRideRowCount=$stmtday->rowCount();
+                    $BookRowCount=$stmt->rowCount();
+                    $DayBookRowCount=$stmtday->rowCount();
                     ?>
             
                 
@@ -88,7 +88,7 @@ include('navbar.php');
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                     <h3 class="counter text-right m-t-15 text-danger" style="color: green;"><?php
-                                    echo "#";?></h3><!-- query to count all users -->
+                                    echo $UserRowCount;?></h3><!-- query to count all users -->
                                 </div> 
                             </div>
                         </div>
@@ -105,7 +105,7 @@ include('navbar.php');
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                     <h3 class="counter text-right m-t-15 text-danger" style="color: green;"><?php
-                                    echo "#";?></h3><!-- query to count all users -->
+                                    echo $BookRowCount;?></h3><!-- query to count all users -->
                                 </div> 
                             </div>
                         </div>
@@ -123,7 +123,7 @@ include('navbar.php');
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                     <h3 class="counter text-right m-t-15 text-danger" style="color: green;"><?php
-                                    echo "#";?></h3><!-- query to count all users -->
+                                    echo $DayBookRowCount;?></h3><!-- query to count all users -->
                                 </div>
                             </div>
                         </div>
@@ -137,49 +137,67 @@ include('navbar.php');
             <div class="row">
                 <?php
                 $conn = $db;
-
-                $stmts=0;
-                if($stmts->rowCount() > 0){
+                $stmt2=$book->DayBooksDisplay();
+                if($stmt2->rowCount() >= 0){
                     //All echos display html elements
                     echo '
                     <div class="row bg-title">
                         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                            <h4 class="page-title" style="color:black; font-size: 16pt;">Today\'s Trips</h4>
+                            <h4 class="page-title" style="color:black; font-size: 16pt;">Books due today:</h4>
                         </div>
                     </div>
                     <table class="table table-dark table-striped">';
                     echo '<thead>
                         <tr>
-                            <th>RideDate</th>
-                            <th>RideTime</th>
-                            <th>Capacity</th>
-                            <th>Route</th>
-                            <th>Pickup</th>
-                            <th>Destination</th>
+                            <th>Due Date</th>
+                            <th>Date borrowed</th>
+                            <th>Borrowed by (Student ID) :</th>
+                            <th>Book Title</th>
+                            <th>Author</th>
+                            <th>Category</th>
                             <th> </th>   
                         </tr>
-                        </thead>';
+                        </thead>'; 
                     // Fill the table body with the values
-                    while($row = $stmts->fetch(PDO::FETCH_ASSOC)) {            
+                    while($row = $stmt2->fetch(PDO::FETCH_ASSOC)) {            
                         echo "<tr>
-                                <td>{$row["rideDate"]}</td>
-                                <td>{$row["rideTime"]}</td>
-                                <td>{$row["capacity"]}</td>
-                                <td>{$row["route"]}</td>
-                                <td>{$row["pickup"]}</td>
-                                <td>{$row["destination"]}</td>
-                                <td><button style = 'color:red'><a href ='rideInfo.php?info=$row[RideID]' name='Del' style = 'color:red'> More Info </a></button></td>
-                                  
-                            </tr>";}
+                                <td>{$row["Expected_ReturnDate"]}</td>
+                                <td>{$row["Date_Borrowed"]}</td>
+                                <td style='text-align:center'>{$row["StudentID"]}</td>
+                                <td>{$row["Title"]}</td>
+                                <td>{$row["Author"]}</td>
+                                <td>{$row["Category"]}</td>
+                                <td><button style = 'color:red' data-toggle='modal' data-target='#studentdetailsmodal'> Student Details </button></td>                                  
+                            </tr>";
+                        }
                     echo  "</table>";
                 }
                 else{
                     echo' <div class="alert alert-danger" style="margin: 60px 0 0 0;">
-                    <strong>Error!</strong> No records found.</div>';
+                    <strong>Hello!</strong> No books due today.</div>';
                 }
                     ?>
                     
             </div>
+
+            <div class="modal fade" id="studentdetailsmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Add Ride </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+
+    
+
+
+
+    </div>
+    </div>
+    </div>
+
                 
             <!-- /.container-fluid -->
             <footer class="footer text-center"> 2020 &copy; ASHTRANSIT </footer>

@@ -49,29 +49,24 @@ if(isset($_SESSION['fname'])){
             
             if(isset($_GET['info'])){
                 //For specific Ride information
-                $sql = "SELECT * FROM rides WHERE RideID =".$_GET['info'];
+                $sql = "SELECT * FROM Books WHERE BookID =".$_GET['info'];
                 $stmty = $conn->prepare($sql);
                 $stmty->execute();
                 
-                //For User Information
-                $query =  "SELECT * FROM users WHERE UserID IN( SELECT UserID FROM bookings WHERE RideID =".$_GET['info'].")";
-                $stmt = $conn->prepare($query);
-                $stmt->execute();
+                
 
                 $result = $stmty->fetch(PDO::FETCH_ASSOC);
-                $slotsTaken = $stmt->rowCount();
-                $capacity = $result["capacity"];
-                $spaceAvailable = $capacity - $slotsTaken;
+                
             
-                if($stmt->rowCount() > 0){
+                if($stmty->rowCount() > 0){
                     //All echos display html elements
                     echo'
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="white-box" style = "margin-bottom: 13px;" >    
-                            <p> Pickup: <span style="color: green; font-weight:bolder;">'; echo $result['pickup']; echo '</span></p>
-                            <p> Destination: <span style="color: green; font-weight:bolder;">'; echo $result['destination']; echo '</span></p>
-                            <p> Route: <span style="color: green; font-weight:bolder;">'; echo $result['route']; echo '</span>
-                                Time: <span style="color: green; font-weight:bolder;">'; echo $result['rideTime']; echo '</span>
+                            <p> Pickup: <span style="color: green; font-weight:bolder;">'; echo '#'; echo '</span></p>
+                            <p> Destination: <span style="color: green; font-weight:bolder;">'; echo '#'; echo '</span></p>
+                            <p> Route: <span style="color: green; font-weight:bolder;">'; echo '#'; echo '</span>
+                                Time: <span style="color: green; font-weight:bolder;">'; echo '#'; echo '</span>
                             </p>
                         </div> 
                     </div>
@@ -86,7 +81,7 @@ if(isset($_SESSION['fname'])){
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                     <h3 class="counter text-right m-t-15 text-danger" style="color: green;">';
-                                    echo $result["capacity"]; 
+                                    echo '#'; 
                                     echo'</h3>
                                 </div> 
                             </div>
@@ -103,7 +98,7 @@ if(isset($_SESSION['fname'])){
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                     <h3 class="counter text-right m-t-15 text-danger" style="color: green;">';
-                                    echo $spaceAvailable; 
+                                    echo '#'; 
                                     echo'</h3>
                                 </div> 
                             </div>
@@ -129,13 +124,13 @@ if(isset($_SESSION['fname'])){
                         </tr>
                         </thead>';
                     // Fill the table body with the values
-                    while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {            
+                    while($row = $stmty->fetch(PDO::FETCH_ASSOC)) {            
                         echo "<tr>
-                                <td>{$row["UserID"]}</td>
-                                <td>{$row["fname"]}</td>
-                                <td>{$row["lname"]}</td>
-                                <td>{$row["contact"]}</td>
-                                <td>{$row["email"]}</td>  
+                                <td>{$row["Title"]}</td>
+                                <td>{$row["Title"]}</td>
+                                <td>{$row["Title"]}</td>
+                                <td>{$row["Title"]}</td>
+                                <td>{$row["Title"]}</td>  
                                 <td></td>  
                             </tr>";}
                     echo  "</table>";
@@ -144,10 +139,10 @@ if(isset($_SESSION['fname'])){
                     <div class= "row">
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="white-box" style= "margin-bottom: 13px;">    
-                            <p> Pickup: <span style="color: green; font-weight:bolder;">'; echo $result['pickup']; echo '</span></p>
-                            <p> Destination: <span style="color: green; font-weight:bolder;">'; echo $result['destination']; echo '</span></p>
-                            <p> Route: <span style="color: green; font-weight:bolder;">'; echo $result['route']; echo '</span>
-                                Time: <span style="color: green; font-weight:bolder;">'; echo $result['rideTime']; echo '</span>
+                            <p> Pickup: <span style="color: green; font-weight:bolder;">'; echo '#'; echo '</span></p>
+                            <p> Destination: <span style="color: green; font-weight:bolder;">'; echo '#'; echo '</span></p>
+                            <p> Route: <span style="color: green; font-weight:bolder;">'; echo '#'; echo '</span>
+                                Time: <span style="color: green; font-weight:bolder;">'; echo '#'; echo '</span>
                             </p>
                         </div> 
                     </div>
@@ -162,7 +157,7 @@ if(isset($_SESSION['fname'])){
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                     <h3 class="counter text-right m-t-15 text-danger" style="color: green;">';
-                                    echo $result["capacity"]; 
+                                    echo '#'; 
                                     echo'</h3>
                                 </div> 
                             </div>
@@ -179,7 +174,7 @@ if(isset($_SESSION['fname'])){
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                     <h3 class="counter text-right m-t-15 text-danger" style="color: green;">';
-                                    echo $spaceAvailable; 
+                                    echo '#'; 
                                     echo'</h3>
                                 </div> 
                             </div>
