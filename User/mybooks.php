@@ -30,7 +30,9 @@
 						$category;
 						$author;
 						$quantity;
-						$book_status;
+                        $book_status;
+                        $return_date;
+                        $borrow_date;
                         $stmt = $book->getStudentBooks();
                         if($stmt->rowCount() > 0){
                             // Fill the table body with the values
@@ -41,8 +43,10 @@
 								$author = $result["Author"];
 								$quantity = $result["Quantity"];
                                 $book_status = $result["Book_Status"];
-                                
+                                $return_date = $result["Expected_ReturnDate"];
+                                $borrow_date = $result["Date_Borrowed"];
 
+                                
 
                                 echo '><div class="books" style="width:50%; margin-bottom:20px;">';
                                 
@@ -50,7 +54,9 @@
                                     echo '<br>Category: ';    echo $category; 
                                     echo '<br>Author:';    echo $author; 
                                     echo '<br>Quantity left: ';    echo $quantity;
-                                    echo '<br>Book Status: ';    echo $book_status;  
+                                    echo '<br>Book Status: ';    echo $book_status;
+                                    echo '<br>Return Date: ';    echo $return_date;
+                                    echo '<br> Date: ';    echo $return_date;
                                     echo '<br><button>Return Book</button>';
                                 
                                 

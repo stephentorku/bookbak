@@ -28,10 +28,12 @@ class books{
 
     function getStudentBooks(){
         $studentid = $_SESSION['studentID'];
-        $query =  "SELECT * FROM 
-        Books 
-        WHERE BookID
-        IN(SELECT BookID FROM Borrowed_books WHERE StudentID =".$studentid.")";
+        $query =  "SELECT Borrowed_books.BookID, Borrowed_books.Expected_ReturnDate, Borrowed_books.Date_Borrowed, Books.Title,
+        Books.Category, Books.Author, Books.Quantity, Books.Book_Status
+        FROM Borrowed_books
+        RIGHT JOIN Books
+        ON Borrowed_books.BookID = Books.BookID
+        WHERE Borrowed_books.StudentID = '$studentid'";
          // prepare query statement
          $stmt = $this->conn->prepare($query);
          // execute query
