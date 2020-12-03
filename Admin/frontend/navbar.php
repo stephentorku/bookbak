@@ -32,7 +32,7 @@
                 <div class="top-left-part">
                 <a class="navbar-brand justify-content-center" href="../../User/index.php" style="height: 100px;">
                         <b class="logo-icon">
-                            <img src="../../User/images/bookbak.png" class="dark-logo" />
+                            <img src="../../User/images/bookbak.png" class="dark-logo" style ="height:100px; padding:0 0 10px 50px"/>
 
                         </b>
                     </a>

@@ -84,11 +84,11 @@ include('navbar.php');
                                 <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E"
                                         class="linea-icon linea-basic"></i>
                                     <h5 class="text-muted vb" style="color: black; padding: 10px 0; font-weight:bolder;">
-                                    Registered Users</h5>
+                                    Registered Users:</h5>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                     <h3 class="counter text-right m-t-15 text-danger" style="color: green;"><?php
-                                    echo "UserRowCount";?></h3><!-- query to count all users -->
+                                    echo "#";?></h3><!-- query to count all users -->
                                 </div> 
                             </div>
                         </div>
@@ -101,11 +101,11 @@ include('navbar.php');
                                 <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E"
                                         class="linea-icon linea-basic"></i>
                                     <h5 class="text-muted vb" style="color: black; padding: 10px 0; font-weight:bolder;">
-                                    Published Rides</h5>
+                                    Number of Books: </h5>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                     <h3 class="counter text-right m-t-15 text-danger" style="color: green;"><?php
-                                    echo "RideRowCount";?></h3><!-- query to count all users -->
+                                    echo "#";?></h3><!-- query to count all users -->
                                 </div> 
                             </div>
                         </div>
@@ -119,11 +119,11 @@ include('navbar.php');
                                 <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E"
                                         class="linea-icon linea-basic"></i>
                                     <h5 class="text-muted vb" style="color: black; padding: 10px 0; font-weight:bolder;">
-                                    Today's Trips</h5>
+                                    Books due today: </h5>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                     <h3 class="counter text-right m-t-15 text-danger" style="color: green;"><?php
-                                    echo "DayRideRowCount";?></h3><!-- query to count all users -->
+                                    echo "#";?></h3><!-- query to count all users -->
                                 </div>
                             </div>
                         </div>
