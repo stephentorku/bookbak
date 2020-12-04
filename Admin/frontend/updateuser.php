@@ -14,11 +14,11 @@ $conn = $db;
     if(isset($_POST['updatedata']))
     {   
         
-        $userid=$_POST['userID'];
+        $userid=$_POST['StudentID'];
         $role=$_POST['role'];
 
-        $query = "UPDATE users SET role=".$role."
-         WHERE UserID=". $userid;
+        $query = "UPDATE Students SET role=".$role."
+         WHERE StudentID=". $userid;
         $stmt = $conn->prepare($query);
         $true = $stmt->execute();
 

@@ -53,13 +53,11 @@ if(isset($_SESSION['fname'])){
             <table class="table table-dark table-striped">';
             echo '<thead>
                 <tr>
-                    <th>User ID</th>
+                    <th>Student ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
-                    <th>Username</th>
                     <th>Email</th>
                     <th>Role</th>
-                    <th>Created</th>
                     <th> </th>   
                     <th> </th> 
                     <th> </th>  
@@ -69,17 +67,15 @@ if(isset($_SESSION['fname'])){
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)) { 
                      
                 echo "<tr>
-                        <td>{$row["UserID"]}</td>
+                        <td>{$row["StudentID"]}</td>
                         <td>{$row["fname"]}</td>
                         <td>{$row["lname"]}</td>
-                        <td>{$row["username"]}</td>
                         <td>{$row["email"]}</td>
                         <td>{$row["role"]}</td>
-                        <td>{$row["created"]}</td>
-                        <td><form method= 'post' action ='users.php' id='form'><button type='submit' name='edit' value ="; echo $row["UserID"]; 
+                        <td><form method= 'post' action ='users.php' id='form'><button type='submit' name='edit' value ="; echo $row["StudentID"]; 
                         echo ">Store ID</button></form></td>
                         <td><button type='submit' data-toggle='modal' data-target='#editmodal'> Edit</button></td>
-                        <td><button ><a href ='users.php?delete=$row[UserID]' name='Del'> Delete </a></button></td>
+                        <td><button ><a href ='users.php?delete=$row[StudentID]' name='Del'> Delete </a></button></td>
                             
                     </tr>";}
             echo  "</table>";
@@ -88,9 +84,9 @@ if(isset($_SESSION['fname'])){
         if(isset($_GET['delete'])){
             $query = "DELETE  
             FROM
-                users
+                Students
             WHERE
-            UserID ='$_GET[delete]'";
+            StudentID ='$_GET[delete]'";
             // prepare query statement
             $stmt = $conn->prepare($query);
             // execute query
@@ -131,7 +127,7 @@ if(isset($_SESSION['fname'])){
                                 <option value= 0 >0</option>
                                 <option value= 1 >1</option>			
                             </select>
-                            <input type="hidden" value= " <?php echo $_POST['edit']; ?>" name="userID">
+                            <input type="hidden" value= " <?php echo $_POST['edit']; ?>" name="StudentID">
                         </div>
                     </div>
                     <div class="modal-footer">
