@@ -81,8 +81,7 @@ include('navbar.php');
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="white-box">
                             <div class="col-in row">
-                                <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E"
-                                        class="linea-icon linea-basic"></i>
+                                <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E"class="linea-icon linea-basic"></i>
                                     <h5 class="text-muted vb" style="color: black; padding: 10px 0; font-weight:bolder;">
                                     Registered Users:</h5>
                                 </div>
@@ -98,8 +97,7 @@ include('navbar.php');
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="white-box">
                             <div class="col-in row">
-                                <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E"
-                                        class="linea-icon linea-basic"></i>
+                                <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E" class="linea-icon linea-basic"></i>
                                     <h5 class="text-muted vb" style="color: black; padding: 10px 0; font-weight:bolder;">
                                     Number of Books: </h5>
                                 </div>
@@ -138,7 +136,7 @@ include('navbar.php');
                 <?php
                 $conn = $db;
                 $stmt2=$book->DayBooksDisplay();
-                if($stmt2->rowCount() >= 0){
+                if($stmt2->rowCount() > 0){
                     //All echos display html elements
                     echo '
                     <div class="row bg-title">
@@ -167,7 +165,7 @@ include('navbar.php');
                                 <td>{$row["Title"]}</td>
                                 <td>{$row["Author"]}</td>
                                 <td>{$row["Category"]}</td>
-                                <td><button style = 'color:red' data-toggle='modal' data-target='#studentdetailsmodal'> Student Details </button></td>                                  
+                                <td><button style = 'color:red'><a href ='rideInfo.php?info=$row[BookID]&sid=$row[StudentID]' name='Del' style = 'color:red'> More Info </a></button></td>                                  
                             </tr>";
                         }
                     echo  "</table>";
@@ -180,23 +178,6 @@ include('navbar.php');
                     
             </div>
 
-            <div class="modal fade" id="studentdetailsmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-    <div class="modal-content">
-    <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">Add Ride </h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-    </div>
-
-    
-
-
-
-    </div>
-    </div>
-    </div>
 
                 
             <!-- /.container-fluid -->

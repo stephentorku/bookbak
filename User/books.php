@@ -55,6 +55,20 @@ class books{
         return $stmt;
     }
 
+    function getStudentDetails(){
+        $query =  "SELECT
+                    *
+                FROM
+                    Borrowed_books
+                RIGHT JOIN Books ON Borrowed_books.BookID = Books.BookID 
+                WHERE Borrowed_books.Expected_ReturnDate= CURDATE()";
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
+        // execute query
+        $stmt->execute();
+        return $stmt;
+    }
+
 
     function getStudentBooks(){
         $studentid = $_SESSION['studentID'];

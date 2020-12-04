@@ -2,6 +2,8 @@
 define('ROOT_PATH', dirname(__DIR__) . '/../');
 include(ROOT_PATH.'User/database.php');
 include_once(ROOT_PATH.'User/user.php');
+include_once(ROOT_PATH.'User/books.php');
+
 include('navbar.php');
 
 session_start();
@@ -36,7 +38,7 @@ if(isset($_SESSION['fname'])){
     <div class="container-fluid">
         <div class="row bg-title">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="page-title" style="color:black; font-size: 16pt;">More Info: Ride# <?php echo $_GET['info']?>  </h4>
+                <h4 class="page-title" style="color:black; font-size: 16pt;">More Info: Book# <?php echo $_GET['info']?>  </h4>
             </div>
         </div>
         <?php
@@ -45,150 +47,57 @@ if(isset($_SESSION['fname'])){
             $db = $database->getConnection();
             $conn = $db;
 
-            $id = $_GET['info'];
+            $bookid = $_GET['info'];
+            $studentid = $_GET['sid'];
+
             
             if(isset($_GET['info'])){
                 //For specific Ride information
-                $sql = "SELECT * FROM Books WHERE BookID =".$_GET['info'];
+                
+                $sql= "SELECT
+                            *
+                        FROM
+                            `Students`
+                            WHERE StudentID IN(SELECT StudentID FROM Borrowed_books WHERE BookID ='{$_GET['info']}')";
                 $stmty = $conn->prepare($sql);
                 $stmty->execute();
                 
                 
 
-                $result = $stmty->fetch(PDO::FETCH_ASSOC);
+                
                 
             
                 if($stmty->rowCount() > 0){
                     //All echos display html elements
-                    echo'
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <div class="white-box" style = "margin-bottom: 13px;" >    
-                            <p> Pickup: <span style="color: green; font-weight:bolder;">'; echo '#'; echo '</span></p>
-                            <p> Destination: <span style="color: green; font-weight:bolder;">'; echo '#'; echo '</span></p>
-                            <p> Route: <span style="color: green; font-weight:bolder;">'; echo '#'; echo '</span>
-                                Time: <span style="color: green; font-weight:bolder;">'; echo '#'; echo '</span>
-                            </p>
-                        </div> 
-                    </div>
-                        
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <div class="white-box">
-                            <div class="col-in row">
-                                <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E"
-                                        class="linea-icon linea-basic"></i>
-                                    <h5 class="text-muted vb" style="color: black; padding: 10px 0; font-weight:bolder;">
-                                    Ride Capacity</h5>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h3 class="counter text-right m-t-15 text-danger" style="color: green;">';
-                                    echo '#'; 
-                                    echo'</h3>
-                                </div> 
-                            </div>
+                    while($row = $stmty->fetch(PDO::FETCH_ASSOC)) { 
+                    echo '
+                        <div class="card" style="width: 18rem; display:block; margin:0 auto; background-color:white;">
+                        <img src="../../User/images/person.png" class="card-img-top" alt="..." style="width:100%">
+                        <div class="card-body">
+                            <h5 class="card-title">Student Details<br><br></h5>
+                            <p class="card-text"></p>
                         </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <div class="white-box">
-                            <div class="col-in row">
-                                <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E"
-                                        class="linea-icon linea-basic"></i>
-                                    <h5 class="text-muted vb" style="color: black; padding: 10px 0; font-weight:bolder;">
-                                    Slots Remaining</h5>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h3 class="counter text-right m-t-15 text-danger" style="color: green;">';
-                                    echo '#'; 
-                                    echo'</h3>
-                                </div> 
-                            </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Name: '; echo$row['fname']; echo' </li>
+                            <li class="list-group-item">Lastt name:'; echo$row['lname']; echo' </li>
+                            <li class="list-group-item">Year:'; echo$row['yeargroup']; echo' </li>
+                            <li class="list-group-item">Curriculum: '; echo$row['curriculum']; echo' </li>
+                            <li class="list-group-item">Email'; echo$row['email'];echo'</li>
+                        </ul>
+                        <div class="card-body">
+                            
+                            <a href="#" class="card-link">Send email</a>
                         </div>
-                    </div>
-                   
-                    <div class="row bg-title">
-                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                            <h4 class="page-title" style="color:black; font-size: 16pt;"> Booked By: </h4>
                         </div>
-                    </div>'; 
-                    echo '<table class="table table-dark table-striped">';
-                    echo '<thead>
-                        <tr>
-                            <th>User ID</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>contact</th>
-                            <th>Email</th>
-                            <th><button data-toggle="modal" data-target="#editmodal" style="color:black; border:solid 2px black; border-radius:10px;">
-                                Send Email</button>
-                            </th>    
-                        </tr>
-                        </thead>';
+                    ';
                     // Fill the table body with the values
-                    while($row = $stmty->fetch(PDO::FETCH_ASSOC)) {            
-                        echo "<tr>
-                                <td>{$row["Title"]}</td>
-                                <td>{$row["Title"]}</td>
-                                <td>{$row["Title"]}</td>
-                                <td>{$row["Title"]}</td>
-                                <td>{$row["Title"]}</td>  
-                                <td></td>  
-                            </tr>";}
+                    
+                        }
                     echo  "</table>";
                 }else{
                     echo '
-                    <div class= "row">
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <div class="white-box" style= "margin-bottom: 13px;">    
-                            <p> Pickup: <span style="color: green; font-weight:bolder;">'; echo '#'; echo '</span></p>
-                            <p> Destination: <span style="color: green; font-weight:bolder;">'; echo '#'; echo '</span></p>
-                            <p> Route: <span style="color: green; font-weight:bolder;">'; echo '#'; echo '</span>
-                                Time: <span style="color: green; font-weight:bolder;">'; echo '#'; echo '</span>
-                            </p>
-                        </div> 
-                    </div>
-                    
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <div class="white-box">
-                            <div class="col-in row">
-                                <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E"
-                                        class="linea-icon linea-basic"></i>
-                                    <h5 class="text-muted vb" style="color: black; padding: 10px 0; font-weight:bolder;">
-                                    Ride Capacity</h5>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h3 class="counter text-right m-t-15 text-danger" style="color: green;">';
-                                    echo '#'; 
-                                    echo'</h3>
-                                </div> 
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <div class="white-box">
-                            <div class="col-in row">
-                                <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E"
-                                        class="linea-icon linea-basic"></i>
-                                    <h5 class="text-muted vb" style="color: black; padding: 10px 0; font-weight:bolder;">
-                                    Slots Remaining</h5>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h3 class="counter text-right m-t-15 text-danger" style="color: green;">';
-                                    echo '#'; 
-                                    echo'</h3>
-                                </div> 
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-
-                    <div class="row bg-title">
-                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                            <h4 class="page-title" style="color:black; font-size: 16pt;"> Booked By: </h4>
-                        </div>
-                    </div>
                     <div class="alert alert-danger" style="margin: 10px 0 0 0; background-color: rgb(151, 17, 17);">
-                    <strong>No records found!</strong> It seems no one has booked this ride yet.
+                    <strong>something went wrong :(  !</strong> .
                     </div>';
                 }
             }
