@@ -73,7 +73,7 @@
                                 aria-hidden="true"></i><span class="hide-menu">&nbsp;&nbsp; Books</span></a>
                     </li>
                     <li>
-                        <a href="#" class="waves-effect"><i class="fa fa-taxi" 
+                        <a href="admin_borrowed.php" class="waves-effect"><i class="fa fa-taxi" 
                                 aria-hidden="true"></i><span class="hide-menu">&nbsp;&nbsp; Borrowed Books</span></a>
                     </li>
                     <li>

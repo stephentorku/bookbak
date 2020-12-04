@@ -10,7 +10,12 @@
 <body>
     <?php
     session_start();
-    include_once('navbar.php');?>
+    if(isset($_SESSION['fname'])){  
+        include_once('navbar.php');
+    }
+    else{    
+        header("Location:loginPage.php");
+    }?>
 
 
 <?php 
@@ -51,7 +56,7 @@
                                     echo '<br>Author:';    echo $author; 
                                     echo '<br>Quantity left: ';    echo $quantity;
                                     echo '<br>Book Status: ';    echo $book_status;  
-                                    echo '<br><button>Book</button>';
+                                    echo "<br><button style = 'color:red'><a href ='borrow_book.php?bid=$result[BookID]' name='Del' style = 'color:red'> Borrow </a></button>";
                                 
                                 
                                 

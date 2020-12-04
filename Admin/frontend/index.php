@@ -9,7 +9,7 @@ include('navbar.php');
         }
     }
     else{
-        header("location:../../User/LoginPage.php"); 
+        header("location:../../User/loginPage.php"); 
     }
 
 
@@ -149,7 +149,6 @@ include('navbar.php');
                         <tr>
                             <th>Due Date</th>
                             <th>Date borrowed</th>
-                            <th>Borrowed by (Student ID) :</th>
                             <th>Book Title</th>
                             <th>Author</th>
                             <th>Category</th>
@@ -161,11 +160,10 @@ include('navbar.php');
                         echo "<tr>
                                 <td>{$row["Expected_ReturnDate"]}</td>
                                 <td>{$row["Date_Borrowed"]}</td>
-                                <td style='text-align:center'>{$row["StudentID"]}</td>
                                 <td>{$row["Title"]}</td>
                                 <td>{$row["Author"]}</td>
                                 <td>{$row["Category"]}</td>
-                                <td><button style = 'color:red'><a href ='rideInfo.php?info=$row[BookID]&sid=$row[StudentID]' name='Del' style = 'color:red'> More Info </a></button></td>                                  
+                                <td><button style = 'color:red'><a href ='bookInfo.php?info=$row[BookID]&sid=$row[StudentID]' name='Del' style = 'color:red'> Click to see who borrowed </a></button></td>                                  
                             </tr>";
                         }
                     echo  "</table>";

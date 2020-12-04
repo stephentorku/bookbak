@@ -32,7 +32,7 @@ if($stmt->rowCount() > 0){
 
     
     if($row['role'] == 1){
-        header("Location:index.php");
+        header("Location:mybooks.php");
     }
     if($row['role'] == 0){
         header('Location: ..\Admin\frontend\index.php');

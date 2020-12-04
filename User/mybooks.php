@@ -10,7 +10,16 @@
 <body>
     <?php
     session_start();
-    include_once('navbar.php');?>
+
+    
+    if(isset($_SESSION['fname'])){  
+        include_once('navbar.php');
+    }
+    else{    
+        header("Location:loginPage.php");
+    } ?>
+
+
 
 
 <?php 

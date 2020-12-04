@@ -5,7 +5,7 @@ define('ROOT_PATH', dirname(__DIR__) . '/../');
 include(ROOT_PATH.'User/database.php');
 
 // instantiate user object
-include(ROOT_PATH.'User/rides.php');
+include(ROOT_PATH.'User/books.php');
 
 include('navbar.php');
 
@@ -36,7 +36,7 @@ if(isset($_SESSION['fname'])){
         <div class="container-fluid">
             <div class="row bg-title">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title" style="color:black; font-size: 16pt;">Bus Rides </h4>
+                    <h4 class="page-title" style="color:black; font-size: 16pt;">Books </h4>
                 </div>
                 
                 <!-- /.col-lg-12 -->
@@ -48,10 +48,10 @@ if(isset($_SESSION['fname'])){
             $db = $database->getConnection();
                 
             // prepare user object
-            $rides = new rides($db);
+            $book = new books($db);
             $conn = $db;
 
-            $stmt = $rides->AllRides();
+            $stmt = $book->BorrowedBooks();
             if($stmt->rowCount() > 0){
                 //All echos display html elements
                 echo '
@@ -59,12 +59,11 @@ if(isset($_SESSION['fname'])){
                 <table class="table table-dark table-striped">';
                 echo '<thead>
                     <tr>
-                        <th>RideDate</th>
-                        <th>RideTime</th>
-                        <th>Capacity</th>
-                        <th>Route</th>
-                        <th>Pickup</th>
-                        <th>Destination</th>
+                        <th>BookID</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Category</th>
+                        <th>Quantity</th>
                         <th> </th>   
                         
                     </tr>
@@ -72,14 +71,13 @@ if(isset($_SESSION['fname'])){
                 // Fill the table body with the values
                 while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {            
                     echo "<tr>
-                            <td>{$row["rideDate"]}</td>
-                            <td>{$row["rideTime"]}</td>
-                            <td>{$row["capacity"]}</td>
-                            <td>{$row["route"]}</td>
-                            <td>{$row["pickup"]}</td>
-                            <td>{$row["destination"]}</td>
-                            <td><form method= 'post' action ='rides.php'>
-                                <button type='submit' value ='$row[RideID]' name='delete' style='background-color:#9c2222c9; border:1px solid black; color:white;'> 
+                            <td>{$row["BookID"]}</td>
+                            <td>{$row["Title"]}</td>
+                            <td>{$row["Category"]}</td>
+                            <td>{$row["Author"]}</td>
+                            <td>{$row["Quantity"]}</td>
+                            <td><form method= 'post' action ='admin_books.php'>
+                                <button type='submit' value ='$row[BookID]' name='delete' style='background-color:#9c2222c9; border:1px solid black; color:white;'> 
                                 Delete </button></form>
                             </td>
                                 
@@ -90,24 +88,24 @@ if(isset($_SESSION['fname'])){
             if(isset($_POST['delete'])){
                 $query = "DELETE  
                 FROM
-                    rides
+                    Books
                 WHERE
-                RideID ='$_POST[delete]'";
+                BookID ='$_POST[delete]'";
                 // prepare query statement
                 $stmt = $conn->prepare($query);
                 // execute query
                 $stmt->execute();
                 if($stmt->execute() === true){
                     echo '<script>';
-                    echo 'swal("Done!", "Ride sucessfully deleted!", "success").then(function() {
-                        window.location = "rides.php";
+                    echo 'swal("Done!", "Book sucessfully deleted!", "success").then(function() {
+                        window.location = "admin_books.php";
                     });
                         </script>';
                         return true;  
                 }else{
                     echo '<script>';
                     echo 'swal("Unable to Delete!", "Hmm...It seems this ride has been booked by a user.", "error").then(function() {
-                        window.location = "rides.php";
+                        window.location = "admin_books.php";
                     });
                         </script>';
                         return false;  
@@ -116,11 +114,7 @@ if(isset($_SESSION['fname'])){
             }
                 ?>
             </div>
-            <div class="row">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rideaddmodal">
-                    ADD RIDE
-                </button>
-            </div>
+            
             </div>
         </div>
 
@@ -129,69 +123,45 @@ if(isset($_SESSION['fname'])){
     <div class="modal-dialog" role="document">
     <div class="modal-content">
     <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">Add Ride </h5>
+    <h5 class="modal-title" id="exampleModalLabel">Add Book </h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
     </div>
 
-    <form action="insertride.php" method="POST">
+    <form action="insertbook.php" method="POST">
 
         <div class="modal-body">
             <div class="form-group">
-                <label> Pickup Point </label>
+                    <label> Book Title </label>
+                    <input type="text" name="title" class="form-control" placeholder="Enter Book Title">
+            </div>
+
+            <div class="form-group">
+                    <label> Author </label>
+                    <input type="text" name="author" class="form-control" placeholder="Enter Book Author">
+            </div>
+
+
+            <div class="form-group">
+                    <label> Category </label>
+                    <input type="text" name="category" class="form-control" placeholder="Enter Book Category">
+            </div>
+
+
+            <div class="form-group">
+                    <label> Quantity </label>
+                    <input type="number" name="quantity" class="form-control" placeholder="Enter Book Quantity">
+            </div>
+
+
+
             
-                <select class="form-control" name="pickup" required>
-                    <option value="">---Select---</option>
-                    <option value="Ashesi University">Ashesi University</option>
-                    <option value="Accra Mall">Accra mall</option>
-
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label> Destination</label>
-                <select class="form-control" name="destination" required>
-                    <option value="">---Select---</option>
-                    <option value="Ashesi University">Ashesi University</option>
-                    <option value="Accra Mall">Accra Mall</option>
-                    <option value="Coca-cola Roundabout">Coca-cola Roundabout</option>
-                    <option value="Spintex">Spintex</option>
-                    <option value="Osu">Osu</option>
-
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label> Route </label>
-                <select class="form-control" name="route" required>
-                    <option value="">---Select---</option>
-                    <option value="Kwabenya-Atomic">Kwabenya-Atomic</option>
-                    <option value="Kitase-Adenta">Kitase-Adenta</option>
-                                    
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label> Capacity </label>
-                <input type="number" name="capacity" class="form-control" placeholder="Enter Shuttle Capacity">
-            </div>
-
-
-            <div class="form-group">
-                <label> Date </label>
-                <input value="<?php echo date('Y-m-d'); ?>" type="date" name="date" class="form-control" placeholder="Enter Date">
-            </div>
-
-            <div class="form-group">
-                <label> Time </label>
-                <input type="time" name="time" class="form-control" placeholder="Enter Time">
-            </div>
             
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" name="insertride" class="btn btn-primary">Add Ride</button>
+            <button type="submit" name="insertbook" class="btn btn-primary">Add Ride</button>
         </div>
     </form>
 
@@ -200,8 +170,6 @@ if(isset($_SESSION['fname'])){
     </div>
     </div>
     </div>
-
-    
     <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
     <div class="modal-dialog" role="document">

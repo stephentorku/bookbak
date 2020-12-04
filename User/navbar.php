@@ -157,9 +157,9 @@ h6{
 <header>
 <nav class="nav-menu d-none d-lg-block" style="font-size:100px">
             <ul>
-                  <li><a href="index.php"><h6>Home</h6></a></li>
-                  <li><a href="index.php"><h6>All Books</h6></a></li>
-                  <li><a href="viewbookings.php"><h6>My Bookings</h6></a></li>
+                  <li><a href="#"><h6>Home</h6></a></li>
+                  <li><a href="student_view.php"><h6>All Books</h6></a></li>
+                  <li><a href="mybooks.php"><h6>My Bookings</h6></a></li>
                   <li > <h6 class="animate__animated animate__fadeInDown" style="color: #fff; margin: auto;"> 
                 
               <li>

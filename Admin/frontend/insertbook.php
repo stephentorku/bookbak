@@ -7,7 +7,7 @@ define('ROOT_PATH', dirname(__DIR__) . '/../');
 include(ROOT_PATH.'User/database.php');
 
 // instantiate user object
-include(ROOT_PATH.'User/rides.php');
+include(ROOT_PATH.'User/books.php');
 
 session_start();
 //checks if the variable user is set
@@ -21,27 +21,27 @@ else{
 
 $database = new Database();
 $db = $database-> getConnection();
-$rides = new rides($db);                       
+$book = new books($db);                       
  
 
-$rides->pickup = $_POST['pickup'];
-$rides->destination = $_POST['destination'];
-$rides->route=$_POST['route'];
-$rides->capacity=$_POST['capacity'];
-$rides->date = date("Y-m-d", strtotime($_POST['date']));
-$rides->time = date("H:i:s", strtotime($_POST['time']));
+$book->title = $_POST['title'];
+$book->author = $_POST['author'];
+$book->category=$_POST['category'];
+$book->quantity=$_POST['quantity'];
+$book->book_status = 'good condition';
 
 
-if($rides->InsertRide()){
+
+if($book->InsertBook()){
     echo '<script defer>';
-    echo 'swal("Done!", "Ride was added successfully!", "success").then(function() {
+    echo 'swal("Done!", "Book was added successfully!", "success").then(function() {
         window.location = "rides.php";
     });
     </script>';
 }else{
     echo '<script defer>';
-    echo 'swal("Something went wrong!", "Sorry, ride insertion failed!", "error").then(function() {
-        window.location = "rides.php";
+    echo 'swal("Something went wrong!", "Sorry, Book insertion failed!", "error").then(function() {
+        window.location = "admin_books.php";
     });
     </script>';
 }
