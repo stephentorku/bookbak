@@ -80,6 +80,7 @@
                                 $author = $result["Author"];
                                 $quantity = $result["Quantity"];
                                 $book_status = $result["Book_Status"];
+                                $_SESSION['bookid'] = $BookID;
                                 
                                 
 
@@ -89,10 +90,15 @@
                                     echo '<br>Category: ';    echo $category; 
                                     echo '<br>Author:';    echo $author; 
                                     echo '<br>Quantity left: ';    echo $quantity;
-                                    echo '<br>Book Status: ';    echo $book_status;  
-                                    echo'<br> Enter Return Date: <form action="confirmborrow.php" method="POST" > <input type="date" id="txtDate" name="expdate" class="form-control" placeholder="Enter Date"></form>';
-                                    echo '<button><a href ="confirmborrow.php?bid='; echo "$BookID"; echo'" style = "text-decoration: none;"> Confirm Borrow </a></button>';
-                                
+                                    echo '<br>Book Status: ';    echo $book_status; ?>
+                                    
+                                    
+                                    <br> Enter Return Date: 
+                                    <form action="confirmborrow.php" method="POST"> 
+                                    <input type="date" id="txtDate" name="expdate" class="form-control" placeholder="Enter Date">
+                                    <?php echo '<br><button type = "submit" name ="confirmborrow"> Confirm Borrow </a></button>  
+                                    </form>' ;
+                                   
                                 
                                 
                                 echo '</div>';

@@ -42,12 +42,11 @@ class books{
     }
     function BorrowedBooks(){
         //Select all Query
-        $query = "SELECT
-                    *
+        $query = "SELECT DISTINCT
+                    `Borrowed_books.BookID`,`Books.Title`,`Books.Category`,`Books.Author`,`Books.Quanitity`
                 FROM
                     Borrowed_books
-                RIGHT JOIN Books ON Borrowed_books.BookID = Books.BookID 
-                WHERE Borrowed_books.Expected_ReturnDate ";
+                RIGHT JOIN Books ON Borrowed_books.BookID = Books.BookID";
         // prepare query statement
         $stmt = $this->conn->prepare($query);
         // execute query

@@ -65,8 +65,7 @@
                                     echo '<br>Quantity left: ';    echo $quantity;
                                     echo '<br>Book Status: ';    echo $book_status;
                                     echo '<br>Return Date: ';    echo $return_date;
-                                    echo '<br> Date: ';    echo $return_date;
-                                    echo '<br><button>Return Book</button>';
+                                    echo' <a href ="mybooks.php?bid='; echo "$result[BookID]"; echo'" name="Del" class="btn btn-primary" style="background-color:#ae3c33; border:0px;margin-top: 10px;">Cancel</a>';
                                 
                                 
                                 
@@ -75,8 +74,35 @@
                             }
                             echo '</div>';
                         }else{
-                            echo 'no records';
+                            echo '<p style="color:white">no records</p>';
                         }
+                        $studentid=$_SESSION['studentID'];
+                        
+                        if(isset($_GET['bid'])){
+                            $bookid = $_GET['bid'];
+							$query = "DELETE  
+							FROM
+								`Borrowed_books`
+							WHERE
+							BookID = '$bookid' AND StudentID = '$studentid'"  ;
+							// prepare query statement
+							$stmt = $conn->prepare($query);
+							// execute query
+							$stmt->execute();
+							if($stmt->execute() === true){
+								echo "<script>";
+								echo "alert('Done! Book returned sucessfully.');      
+									window.location.href='mybooks.php';
+									</script>";
+									return true;  
+							}else{
+								echo '<script>'; 
+								echo 'alert("Error! Unable to Cancel"); 
+									window.location.href="mybooks.php"; 
+									</script>';
+									return false;
+							}		
+						}
 
                         
 ?>

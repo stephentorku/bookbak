@@ -52,13 +52,14 @@ if(isset($_SESSION['fname'])){
 
             
             if(isset($_GET['info'])){
-                //For specific Ride information
+                $curdate = date("Y-m-d");
+             //For specific Ride information
                 
                 $sql= "SELECT
                             *
                         FROM
                             `Students`
-                            WHERE StudentID IN(SELECT StudentID FROM Borrowed_books WHERE BookID ='{$_GET['info']}')";
+                            WHERE StudentID IN(SELECT StudentID FROM Borrowed_books WHERE BookID ='{$_GET['info']}' AND Expected_ReturnDate = '$curdate')";
                 $stmty = $conn->prepare($sql);
                 $stmty->execute();
                 

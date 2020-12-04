@@ -72,10 +72,7 @@
                         <a href="admin_books.php" class="waves-effect"><i class="fa fa-taxi" 
                                 aria-hidden="true"></i><span class="hide-menu">&nbsp;&nbsp; Books</span></a>
                     </li>
-                    <li>
-                        <a href="admin_borrowed.php" class="waves-effect"><i class="fa fa-taxi" 
-                                aria-hidden="true"></i><span class="hide-menu">&nbsp;&nbsp; Borrowed Books</span></a>
-                    </li>
+                    
                     <li>
                         <a href="../../User/logout.php" class="waves-effect"><i class="fa fa-sign-out" 
                                 aria-hidden="true"></i><span class="hide-menu">&nbsp;&nbsp; Logout</span></a>
