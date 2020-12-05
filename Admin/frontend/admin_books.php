@@ -174,36 +174,7 @@ if(isset($_SESSION['fname'])){
     </div>
     </div>
     </div>
-    <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel"> Edit User Permissions </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <form action="updateride.php" method="POST">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label> New Ride Date </label>
-                        <input type="date" name="rideDate" class="form-control" placeholder="Enter Date">
-                        <input type="hidden" value= " <?php echo $_POST['edit']; ?>" name="rideID">
-                    </div>
-                    <div class="form-group">
-                        <label> New Ride Time </label>
-                        <input type="time" name="rideTime" class="form-control" placeholder="Enter Time">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" name="updatedata" class="btn btn-primary">Update Data</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    </div>
+    
 
 
             <!-- /.container-fluid -->

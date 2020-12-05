@@ -60,7 +60,8 @@ if(isset($_SESSION['fname'])){
                     <th>Role</th>
                     <th> </th>   
                     <th> </th> 
-                    <th> </th>  
+                    <th> </th> 
+                    <th> </th> 
                 </tr>
                 </thead>';
             // Fill the table body with the values
@@ -76,6 +77,7 @@ if(isset($_SESSION['fname'])){
                         echo ">Store ID</button></form></td>
                         <td><button type='submit' data-toggle='modal' data-target='#editmodal'> Edit</button></td>
                         <td><button ><a href ='users.php?delete=$row[StudentID]' name='Del'> Delete </a></button></td>
+                        <td><button ><a href ='userinfo.php?sid=$row[StudentID]' name='sid'>View books</a></button></td>
                             
                     </tr>";}
             echo  "</table>";
