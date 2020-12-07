@@ -26,6 +26,23 @@ class books{
         return $stmt;
     
     }
+
+    function OverdueBooks(){
+        //Select all Query
+        $query = "SELECT
+                    *
+                FROM
+                    Borrowed_books 
+                WHERE               
+                CURDATE() > Expected_ReturnDate ";
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
+        // execute query
+        $stmt->execute();
+        return $stmt;
+    }
+
+
     function DayBooks(){
         //Select all Query
         $query = "SELECT
@@ -42,11 +59,7 @@ class books{
     }
     function BorrowedBooks(){
         //Select all Query
-        $query = "SELECT DISTINCT
-                    `Borrowed_books.BookID`,`Books.Title`,`Books.Category`,`Books.Author`,`Books.Quanitity`
-                FROM
-                    Borrowed_books
-                RIGHT JOIN Books ON Borrowed_books.BookID = Books.BookID";
+        $query = "SELECT * FROM Borrowed_books";
         // prepare query statement
         $stmt = $this->conn->prepare($query);
         // execute query
@@ -56,7 +69,7 @@ class books{
 
     function DayBooksDisplay(){
         //Select all Query
-        $query =  "SELECT
+        $query =  "SELECT 
                     *
                 FROM
                     Borrowed_books

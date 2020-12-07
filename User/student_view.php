@@ -55,8 +55,15 @@
                                     echo '<br>Category: ';    echo $category; 
                                     echo '<br>Author:';    echo $author; 
                                     echo '<br>Quantity left: ';    echo $quantity;
-                                    echo '<br>Book Status: ';    echo $book_status;  
-                                    echo "<br><button style = 'color:red'><a href ='borrow_book.php?bid=$result[BookID]' name='Del' style = 'color:red'> Borrow </a></button>";
+                                    echo '<br>Book Status: ';    echo $book_status; 
+                                    
+                                    if($quantity !=0){
+                                        echo "<br><button style = 'color:red'><a href ='borrow_book.php?bid=$result[BookID]' name='Del' style = 'color:red'> Borrow </a></button>";
+
+                                    }else{
+                                        echo '<br><br> Out of this book';
+                                    }
+
                                 
                                 
                                 

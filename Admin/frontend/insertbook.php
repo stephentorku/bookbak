@@ -35,7 +35,7 @@ $book->book_status = 'good condition';
 if($book->InsertBook()){
     echo '<script defer>';
     echo 'swal("Done!", "Book was added successfully!", "success").then(function() {
-        window.location = "rides.php";
+        window.location = "admin_books.php";
     });
     </script>';
 }else{

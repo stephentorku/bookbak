@@ -72,6 +72,10 @@
                         <a href="admin_books.php" class="waves-effect"><i class="fa fa-taxi" 
                                 aria-hidden="true"></i><span class="hide-menu">&nbsp;&nbsp; Books</span></a>
                     </li>
+                    <li>
+                        <a href="overdue.php" class="waves-effect"><i class="fa fa-taxi" 
+                                aria-hidden="true"></i><span class="hide-menu">&nbsp;&nbsp; Overdue Books</span></a>
+                    </li>
                     
                     <li>
                         <a href="../../User/logout.php" class="waves-effect"><i class="fa fa-sign-out" 

@@ -61,11 +61,10 @@
                                 
                                     echo 'Title: ';    echo $title; 
                                     echo '<br>Category: ';    echo $category; 
-                                    echo '<br>Author:';    echo $author; 
-                                    echo '<br>Quantity left: ';    echo $quantity;
+                                    echo '<br>Author:';    echo $author;
                                     echo '<br>Book Status: ';    echo $book_status;
                                     echo '<br>Return Date: ';    echo $return_date;
-                                    echo' <a href ="mybooks.php?bid='; echo "$result[BookID]"; echo'" name="Del" class="btn btn-primary" style="background-color:#ae3c33; border:0px;margin-top: 10px;">Cancel</a>';
+                                    echo' <br><br><a href ="mybooks.php?bid='; echo "$result[BookID]"; echo'" name="Del" class="likeabutton">Return Book</a>';
                                 
                                 
                                 
@@ -85,11 +84,14 @@
 								`Borrowed_books`
 							WHERE
 							BookID = '$bookid' AND StudentID = '$studentid'"  ;
+							$increasequantity = "UPDATE Books SET Quantity = Quantity + 1 WHERE BookID = '$bookid'";
+							$stmt1 = $conn->prepare($increasequantity);
 							// prepare query statement
 							$stmt = $conn->prepare($query);
 							// execute query
 							$stmt->execute();
 							if($stmt->execute() === true){
+								$stmt1->execute();
 								echo "<script>";
 								echo "alert('Done! Book returned sucessfully.');      
 									window.location.href='mybooks.php';

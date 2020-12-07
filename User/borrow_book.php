@@ -104,6 +104,9 @@
                                 echo '</div>';
 
                             }
+                            $reducequantity = "UPDATE Books SET Quantity = Quantity - 1 WHERE BookID = '$bookid'";
+                            $stmt1 = $conn->prepare($reducequantity);
+                            $stmt1->execute();
                             echo '</div>';
                         }else{
                             echo 'no records';

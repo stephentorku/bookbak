@@ -53,13 +53,13 @@ if(isset($_SESSION['fname'])){
             
             if(isset($_GET['info'])){
                 $curdate = date("Y-m-d");
-             //For specific Ride information
+             //For specific Book information
                 
                 $sql= "SELECT
                             *
                         FROM
                             `Students`
-                            WHERE StudentID IN(SELECT StudentID FROM Borrowed_books WHERE BookID ='{$_GET['info']}' AND Expected_ReturnDate = '$curdate')";
+                            WHERE StudentID = '$studentid'";
                 $stmty = $conn->prepare($sql);
                 $stmty->execute();
                 
@@ -72,8 +72,10 @@ if(isset($_SESSION['fname'])){
                     //All echos display html elements
                     while($row = $stmty->fetch(PDO::FETCH_ASSOC)) { 
                     echo '
-                        <div class="card" style="width: 18rem; display:block; margin:0 auto; background-color:white;">
-                        <img src="../../User/images/person.png" class="card-img-top" alt="..." style="width:100%">
+                        <div style="float:left"></div>
+                        <div class = "container-fluid col-md-4" style = "overflow-x: auto; ">
+                        <div class="card" style="width: 400px; display:block; margin:0 auto; background-color:white;">
+                        <img src="../../User/images/person.png" class="card-img-top" alt="..." style="width:80%">
                         <div class="card-body">
                             <h5 class="card-title">Student Details<br><br></h5>
                             <p class="card-text"></p>
@@ -88,6 +90,7 @@ if(isset($_SESSION['fname'])){
                         <div class="card-body">
                             
                             <a href="#" class="card-link">Send email</a>
+                        </div>
                         </div>
                         </div>
                     ';

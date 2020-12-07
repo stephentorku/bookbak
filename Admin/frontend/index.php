@@ -68,17 +68,19 @@ include('navbar.php');
                     $book = new books($db);
                     $stmt = $book->allbooks();
                     $stmtday = $book->DayBooks();
+                    $stmtborrowed = $book->BorrowedBooks();
                     
                     // Return the number of rows in result set
                     $BookRowCount=$stmt->rowCount();
                     $DayBookRowCount=$stmtday->rowCount();
+                    $BorrowedBooksCount = $stmtborrowed->rowCount();
                     ?>
             
                 
                 <!-- row -->
                 <div class="row">
                     <!--col -->
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="white-box">
                             <div class="col-in row">
                                 <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E"class="linea-icon linea-basic"></i>
@@ -94,7 +96,7 @@ include('navbar.php');
                     </div>
                     <!-- /.col -->
                     <!--col -->
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="white-box">
                             <div class="col-in row">
                                 <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E" class="linea-icon linea-basic"></i>
@@ -111,7 +113,7 @@ include('navbar.php');
                     <!-- /.col -->
 
                     <!--col -->
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="white-box">
                             <div class="col-in row">
                                 <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E"
@@ -127,6 +129,21 @@ include('navbar.php');
                         </div>
                     </div>
                     <!-- /.col -->
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <div class="white-box">
+                            <div class="col-in row">
+                                <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E"class="linea-icon linea-basic"></i>
+                                    <h5 class="text-muted vb" style="color: black; padding: 10px 0; font-weight:bolder;">
+                                    Borrowed books:</h5>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <h3 class="counter text-right m-t-15 text-danger" style="color: green;"><?php
+                                    echo $BorrowedBooksCount;?></h3><!-- query to count all users -->
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
 
@@ -147,6 +164,7 @@ include('navbar.php');
                     <table class="table table-dark table-striped">';
                     echo '<thead>
                         <tr>
+                            <th> Borrowed by (Student ID):
                             <th>Due Date</th>
                             <th>Date borrowed</th>
                             <th>Book Title</th>
@@ -158,12 +176,13 @@ include('navbar.php');
                     // Fill the table body with the values
                     while($row = $stmt2->fetch(PDO::FETCH_ASSOC)) {            
                         echo "<tr>
+                                <td>{$row["StudentID"]}</td>
                                 <td>{$row["Expected_ReturnDate"]}</td>
                                 <td>{$row["Date_Borrowed"]}</td>
                                 <td>{$row["Title"]}</td>
                                 <td>{$row["Author"]}</td>
                                 <td>{$row["Category"]}</td>
-                                <td><button style = 'color:red'><a href ='bookInfo.php?info=$row[BookID]&sid=$row[StudentID]' name='Del' style = 'color:red'> Click to see who borrowed </a></button></td>                                  
+                                <td><button style = 'color:red'><a href ='bookInfo.php?info=$row[BookID]&sid=$row[StudentID]' name='Del' style = 'color:red'> Click to get Student info </a></button></td>                                  
                             </tr>";
                         }
                     echo  "</table>";
