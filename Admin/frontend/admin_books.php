@@ -21,22 +21,37 @@ if(isset($_SESSION['fname'])){
 
 ?>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@800&display=swap" rel="stylesheet">
 <style>
     th {
          font-weight: 600;
          font-size: 12pt;
          color: white;
-         background-color: #9c2222c9;
+         background-color: #c0392b;
     }
+
+    .shadow {
+        background-color: #fff;
+        /* border-radius */
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        /* box-shadow */
+        -webkit-box-shadow: rgba(0,0,0,0.8) 0px 0 10px;
+        -moz-box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+        box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+        }
+
+
 </style>
 
             <!-- Page Content -->
     <div id="page-wrapper">
         <div class="container-fluid">
             <div class="row bg-title">
-                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title" style="color:black; font-size: 16pt;">Books </h4>
+                <div class="">
+                    <h4 class="page-title" style="color:black; font-size: 16pt;text-align:center; font-family: 'BioRhyme', serif;">BOOKS </h4>
                 </div>
                 
                 <!-- /.col-lg-12 -->
@@ -56,15 +71,15 @@ if(isset($_SESSION['fname'])){
                 //All echos display html elements
                 echo '
                 
-                <table class="table table-dark table-striped">';
+                <table class="table table-dark table-striped shadow">';
                 echo '<thead>
                     <tr>
-                        <th>BookID</th>
+                        <th style="border-top-left-radius:10px">BookID</th>
                         <th>Title</th>
                         <th>Author</th>
                         <th>Category</th>
                         <th>Quantity</th>
-                        <th> </th>   
+                        <th style="border-top-right-radius:10px"> </th>   
                         
                     </tr>
                     </thead>';

@@ -57,7 +57,7 @@
         </nav>
 
         <!-- Left navbar-header -->
-        <div class="navbar-default sidebar" role="navigation">
+        <div class="navbar-default sidebar" role="navigation" style="background-color:#1f2f46">
             <div class="sidebar-nav navbar-collapse slimscrollsidebar">
                 <ul class="nav" id="side-menu">
                     <li style="padding: 50px 0 0;">
@@ -69,11 +69,11 @@
                                 aria-hidden="true"></i><span class="hide-menu">Users</span></a>
                     </li>
                     <li>
-                        <a href="admin_books.php" class="waves-effect"><i class="fa fa-taxi" 
+                        <a href="admin_books.php" class="waves-effect"><i class="fa fa-book" 
                                 aria-hidden="true"></i><span class="hide-menu">&nbsp;&nbsp; Books</span></a>
                     </li>
                     <li>
-                        <a href="overdue.php" class="waves-effect"><i class="fa fa-taxi" 
+                        <a href="overdue.php" class="waves-effect"><i class="fa fa-book" 
                                 aria-hidden="true"></i><span class="hide-menu">&nbsp;&nbsp; Overdue Books</span></a>
                     </li>
                     

@@ -21,7 +21,8 @@ include('navbar.php');
     }
     
     ?>
- 
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@800&display=swap" rel="stylesheet"> 
 
 <style>
     th {
@@ -32,16 +33,42 @@ include('navbar.php');
     }
 
     .white-box{
-        border: 2px solid orange;
+        border: 2px ;
+        border-radius:10px;
     }
+    .nobooks{
+        width:40%; 
+        display:block;
+        margin: 0 auto;
+        margin-top:50px; 
+        background-color: #c0392b;
+        font-size:20px;
+        text-align: center;
+        border-radius:10px;
+    }
+
+    .shadow {
+        background-color: #fff;
+        width:280px;
+        margin:5px;
+        border: 1px solid #1f2f46;
+        /* border-radius */
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        /* box-shadow */
+        -webkit-box-shadow: rgba(0,0,0,0.8) 0px 0 10px;
+        -moz-box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+        box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+        }
 
 </style>
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row bg-title">
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title" style="color:black; font-size: 16pt;">Dashboard</h4>
+                    <div class="">
+                        <h4 class="page-title" style="color:#1f2f46; font-size: 16pt; text-align:center; font-family: 'BioRhyme', serif;">DASHBOARD</h4>
                     </div>
                     
                     <!-- /.col-lg-12 -->
@@ -80,15 +107,15 @@ include('navbar.php');
                 <!-- row -->
                 <div class="row">
                     <!--col -->
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 shadow" style="">
                         <div class="white-box">
                             <div class="col-in row">
                                 <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E"class="linea-icon linea-basic"></i>
-                                    <h5 class="text-muted vb" style="color: black; padding: 10px 0; font-weight:bolder;">
+                                    <h5 class="text-muted vb" style="color: #1f2f46; padding: 10px 0; font-weight:bolder;">
                                     Registered Users:</h5>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h3 class="counter text-right m-t-15 text-danger" style="color: green;"><?php
+                                    <h3 class="counter text-right m-t-15 text-danger" style="color: "><?php
                                     echo $UserRowCount;?></h3><!-- query to count all users -->
                                 </div> 
                             </div>
@@ -96,15 +123,15 @@ include('navbar.php');
                     </div>
                     <!-- /.col -->
                     <!--col -->
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 shadow">
                         <div class="white-box">
                             <div class="col-in row">
                                 <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E" class="linea-icon linea-basic"></i>
-                                    <h5 class="text-muted vb" style="color: black; padding: 10px 0; font-weight:bolder;">
+                                    <h5 class="text-muted vb" style="color: #1f2f46; padding: 10px 0; font-weight:bolder;">
                                     Number of Books: </h5>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h3 class="counter text-right m-t-15 text-danger" style="color: green;"><?php
+                                    <h3 class="counter text-right m-t-15 text-danger" style="color: #1f2f46;"><?php
                                     echo $BookRowCount;?></h3><!-- query to count all users -->
                                 </div> 
                             </div>
@@ -113,31 +140,31 @@ include('navbar.php');
                     <!-- /.col -->
 
                     <!--col -->
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 shadow">
                         <div class="white-box">
                             <div class="col-in row">
                                 <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E"
                                         class="linea-icon linea-basic"></i>
-                                    <h5 class="text-muted vb" style="color: black; padding: 10px 0; font-weight:bolder;">
+                                    <h5 class="text-muted vb" style="color: #1f2f46; padding: 10px 0; font-weight:bolder;">
                                     Books due today: </h5>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h3 class="counter text-right m-t-15 text-danger" style="color: green;"><?php
+                                    <h3 class="counter text-right m-t-15 text-danger" style="color: #1f2f46;"><?php
                                     echo $DayBookRowCount;?></h3><!-- query to count all users -->
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- /.col -->
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 shadow">
                         <div class="white-box">
                             <div class="col-in row">
                                 <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E"class="linea-icon linea-basic"></i>
-                                    <h5 class="text-muted vb" style="color: black; padding: 10px 0; font-weight:bolder;">
+                                    <h5 class="text-muted vb" style="color: #1f2f46; padding: 10px 0; font-weight:bolder;">
                                     Borrowed books:</h5>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h3 class="counter text-right m-t-15 text-danger" style="color: green;"><?php
+                                    <h3 class="counter text-right m-t-15 text-danger" style="color: #1f2f46;"><?php
                                     echo $BorrowedBooksCount;?></h3><!-- query to count all users -->
                                 </div> 
                             </div>
@@ -188,7 +215,7 @@ include('navbar.php');
                     echo  "</table>";
                 }
                 else{
-                    echo' <div class="alert alert-danger" style="margin: 60px 0 0 0;">
+                    echo' <div class="alert alert-danger nobooks">
                     <strong>Hello!</strong> No books due today.</div>';
                 }
                     ?>
