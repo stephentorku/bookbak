@@ -29,12 +29,27 @@ class books{
 
     function OverdueBooks(){
         //Select all Query
-        $query = "SELECT
+        $query =  "SELECT 
                     *
                 FROM
-                    Borrowed_books 
-                WHERE               
-                CURDATE() > Expected_ReturnDate ";
+                    Borrowed_books
+                RIGHT JOIN Books ON Borrowed_books.BookID = Books.BookID 
+                WHERE CURDATE() > Borrowed_books.Expected_ReturnDate";
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
+        // execute query
+        $stmt->execute();
+        return $stmt;
+    }
+
+    function message(){
+        //Select all Query
+        $query =  "SELECT 
+                    *
+                FROM
+                    messages
+                RIGHT JOIN Books ON messagess.BookID = Books.BookID 
+                WHERE CURDATE() > Borrowed_books.Expected_ReturnDate";
         // prepare query statement
         $stmt = $this->conn->prepare($query);
         // execute query

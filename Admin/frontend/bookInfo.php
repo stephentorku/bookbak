@@ -89,7 +89,7 @@ if(isset($_SESSION['fname'])){
                         </ul>
                         <div class="card-body">
                             
-                            <a href="#" class="card-link">Send email</a>
+                            <a href="#" class="card-link" data-toggle="modal" data-target="#editmodal" >Send email</a>
                         </div>
                         </div>
                         </div>
@@ -109,12 +109,13 @@ if(isset($_SESSION['fname'])){
         <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <form action="email.php" method="POST">
+                    <form action="message.php" method="POST">
                         <div class="modal-body">
                             <div class="form-group" >
                                 <label> Subject </label>
                                 <input type = "text" name="subject" style="display:block; width: 95%;">
-                                <input type = "hidden" name="rideID" value="<?php echo $id?>">
+                                <input type = "hidden" name="studentID" value="<?php echo $studentid;?>">
+                                <input type = "hidden" name="bookID" value="<?php echo $bookid;?>">
                                 
                             </div>
                             <div class="form-group">

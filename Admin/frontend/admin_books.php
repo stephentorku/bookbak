@@ -148,8 +148,16 @@ if(isset($_SESSION['fname'])){
 
 
             <div class="form-group">
-                    <label> Category </label>
-                    <input type="text" name="category" class="form-control" placeholder="Enter Book Category">
+                        <select name = "category" id = "category" required>
+							<option>Select Category</option>
+							<option value = "Science">Science</option>
+                            <option value = "Maths">Maths</option>
+                            <option value = "Business">Business</option>
+                            <option value = "Arts">Arts</option>
+                            <option value = "Language">Language</option>
+							<option value = "Technology">Technology</option>
+                            <option value = "Leisure">Leisure</option>
+						</select>
             </div>
 
 

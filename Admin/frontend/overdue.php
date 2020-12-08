@@ -1,26 +1,27 @@
 <?php
-define('ROOT_PATH', dirname(__DIR__) . '/../');
-
-//Get database connection
-include(ROOT_PATH.'User/database.php');
-
-// instantiate user object
-include(ROOT_PATH.'User/books.php');
-
+session_start();
 include('navbar.php');
 
-session_start();
-//checks if the variable user is set
-if(isset($_SESSION['fname'])){ 
-    if($_SESSION['role'] ==1){ 
-        header("Location:../../User/index.php");
-    }    
-}else{
-    header("location:../../User/LoginPage.php"); 
-}
+    //checks if the variable user is set
+    if(isset($_SESSION['fname'])){
+        if($_SESSION['role'] == 1){ 
+            header("Location:../../User/index.php");    
+        }
+    }
+    else{
+        header("location:../../User/loginPage.php"); 
+    }
 
-?>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    if(isset($_SESSION['Message'])){
+        echo "<script type='text/javascript'>
+            alert('" . $_SESSION['errorMessage'] . "');
+          </script>";
+        unset($_SESSION['Message']);
+    }
+    
+    ?>
+ 
 
 <style>
     th {
@@ -29,69 +30,101 @@ if(isset($_SESSION['fname'])){
          color: white;
          background-color: #9c2222c9;
     }
+
+    .white-box{
+        border: 2px solid orange;
+    }
+
 </style>
-
-            <!-- Page Content -->
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <div class="row bg-title">
-                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title" style="color:black; font-size: 16pt;"> Overdue Books </h4>
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title" style="color:black; font-size: 16pt;">Dashboard</h4>
+                    </div>
+                    
+                    <!-- /.col-lg-12 -->
                 </div>
-                
-                <!-- /.col-lg-12 -->
-            </div>
-            <div>
-            <?php
-            // get database connection
-            $database = new Database();
-            $db = $database->getConnection();
-                
-            // prepare user object
-            $book = new books($db);
-            $conn = $db;
+                <?php
+                    define('ROOT_PATH', dirname(__DIR__) . '/../');
+                    include_once(ROOT_PATH.'User/database.php');
+                    include_once(ROOT_PATH.'User/user.php');
+                    include_once(ROOT_PATH.'User/books.php');
+                    
 
-            $stmt = $book->OverdueBooks();
-            if($stmt->rowCount() > 0){
-                //All echos display html elements
-                echo '
-                
-                <table class="table table-dark table-striped">';
-                echo '<thead>
-                    <tr>
-                        <th>BookID</th>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Category</th>
-                        <th>Quantity</th>
-                        <th> </th>   
+                    // get database connection
+                    $database = new Database();
+                    $db = $database->getConnection();
                         
-                    </tr>
-                    </thead>';
-                // Fill the table body with the values
-                while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {            
-                    echo "<tr>
-                            <td>{$row["BookID"]}</td>
-                            <td>{$row["Title"]}</td>
-                            <td>{$row["Category"]}</td>
-                            <td>{$row["Author"]}</td>
-                            <td>{$row["Quantity"]}</td>
-                            <td><button> Send Email </td>
-                            
-                                
-                        </tr>";}
-                echo  "</table>";
-            }
+                    $user = new User($db);
+                    $query_run = $user->allusers();
 
+                    $users = new User($db);
+                    // Return the number of rows in result set
+                    $UserRowCount=$query_run->rowCount();
+
+                    //for bus ride count
+                    $book = new books($db);
+                    $stmt = $book->OverdueBooks();
+                   
+                    // Return the number of rows in result set
+                    
+                    
+                    ?>
             
-                ?>
-            </div>
-           
-            </div>
-        </div>
+                
+               
 
-    
+                <!-- /.row -->            
+            <div class="row">
+                <?php
+                $conn = $db;
+                $stmt = $book->OverdueBooks();
+                if($stmt->rowCount() > 0){
+                    //All echos display html elements
+                    echo '
+                    <div class="row bg-title">
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <h4 class="page-title" style="color:black; font-size: 16pt;">Overdue Books:</h4>
+                        </div>
+                    </div>
+                    <table class="table table-dark table-striped">';
+                    echo '<thead>
+                        <tr>
+                            <th> Borrowed by (Student ID):
+                            <th>Due Date</th>
+                            <th>Date borrowed</th>
+                            <th>Book Title</th>
+                            <th>Author</th>
+                            <th>Category</th>
+                            <th> </th>   
+                        </tr>
+                        </thead>'; 
+                    // Fill the table body with the values
+                    while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {            
+                        echo "<tr>
+                                <td>{$row["StudentID"]}</td>
+                                <td>{$row["Expected_ReturnDate"]}</td>
+                                <td>{$row["Date_Borrowed"]}</td>
+                                <td>{$row["Title"]}</td>
+                                <td>{$row["Author"]}</td>
+                                <td>{$row["Category"]}</td>
+                                <td><button style = 'color:red'><a href ='bookInfo.php?info=$row[BookID]&sid=$row[StudentID]' name='Del' style = 'color:red'> Click to get Student info </a></button></td>                                  
+                            </tr>";
+                        }
+                    echo  "</table>";
+                }
+                else{
+                    echo' <div class="alert alert-danger" style="margin: 60px 0 0 0;">
+                    <strong>Hello!</strong> No books due today.</div>';
+                }
+                    ?>
+                    
+            </div>
 
+
+                
             <!-- /.container-fluid -->
             <footer class="footer text-center"> 2020 &copy; ASHTRANSIT </footer>
         </div>
@@ -108,7 +141,18 @@ if(isset($_SESSION['fname'])){
     <script src="js/jquery.slimscroll.js"></script>
     <!--Wave Effects -->
     <script src="js/waves.js"></script>
+    <!--Counter js -->
+    <script src="../plugins/bower_components/waypoints/lib/jquery.waypoints.js"></script>
+    <script src="../plugins/bower_components/counterup/jquery.counterup.min.js"></script>
+    <!--Morris JavaScript -->
+    <script src="../plugins/bower_components/raphael/raphael-min.js"></script>
+    <script src="../plugins/bower_components/morrisjs/morris.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="js/custom.min.js"></script>
+    <script src="js/dashboard1.js"></script>
+    <script src="../plugins/bower_components/toast-master/js/jquery.toast.js"></script>
+    
+    </script>
 </body>
+
 </html>

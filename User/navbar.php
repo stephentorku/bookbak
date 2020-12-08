@@ -160,19 +160,13 @@ h6{
                   <li><a href="#"><h6>Home</h6></a></li>
                   <li><a href="student_view.php"><h6>All Books</h6></a></li>
                   <li><a href="mybooks.php"><h6>My Bookings</h6></a></li>
+                  <li><a href="inbox.php"><h6>Inbox</h6></a></li>
                   <li > <h6 class="animate__animated animate__fadeInDown" style="color: #fff; margin: auto;"> 
                 
               <li>
                   <div class="dropdown">
                     <img src="images/person.png" alt="user logo" style="width: 50px; border-radius: 50%;">
                     <div class="dropdown-content">
-                      <?php
-                      if($_SESSION['role'] == 0){
-                        echo '
-                        <ul> 
-                        <li> <a href="../Admin/frontend/index.php"> Admin Dash</a> </li>
-                        </ul>' ;
-                      }?>
                       <ul> 
                         <li> <a href="logout.php">Logout</a> </li>
                       </ul>

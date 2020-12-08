@@ -10,16 +10,12 @@
 <body>
     <?php
     session_start();
-
-    
     if(isset($_SESSION['fname'])){  
         include_once('navmenu.php');
     }
     else{    
         header("Location:loginPage.php");
-    } ?>
-
-
+    }?>
 
 
 <?php 
@@ -34,15 +30,25 @@
 						// prepare user object
 						$book = new books($db);
 						
-						//Set variables
+                        //Set variables
+                        $studentid = $_SESSION['studentID'];
+
 						$title;
 						$category;
 						$author;
-						$quantity;
-                        $book_status;
-                        $return_date;
-                        $borrow_date;
-                        $stmt = $book->getStudentBooks();
+                        $sent;
+                        $topic;
+                        $memo;
+                        $query =  "SELECT 
+                                    *
+                                FROM
+                                    messages
+                                RIGHT JOIN Books ON messages.BookID = Books.BookID 
+                                WHERE messages.StudentID = '$studentid'";
+
+                                $stmt = $conn->prepare($query);
+                                // execute query
+                                $stmt->execute();
                         if($stmt->rowCount() > 0){
                             // Fill the table body with the values
                             echo '<div style="margin-top:100px">';
@@ -50,21 +56,23 @@
 								$title = $result['Title'];       
 								$category = $result["Category"];
 								$author = $result["Author"];
-								$quantity = $result["Quantity"];
-                                $book_status = $result["Book_Status"];
-                                $return_date = $result["Expected_ReturnDate"];
-                                $borrow_date = $result["Date_Borrowed"];
-
+								$sent = $result["date_sent"];
+                                $topic = $result["topic"];
+                                $memo = $result["memo"];
                                 
+
 
                                 echo '><div class="books" style="width:50%; margin-bottom:20px;">';
                                 
                                     echo 'Title: ';    echo $title; 
                                     echo '<br>Category: ';    echo $category; 
-                                    echo '<br>Author:';    echo $author;
-                                    echo '<br>Book Status: ';    echo $book_status;
-                                    echo '<br>Return Date: ';    echo $return_date;
-                                    echo' <br><br><a href ="mybooks.php?bid='; echo "$result[BookID]"; echo'" name="Del" class="likeabutton">Return Book</a>';
+                                    echo '<br>Author:';    echo $author; 
+                                    echo '<br>Quantity left: ';    echo $sent;
+                                    echo '<br>Subject: ';    echo $topic; 
+                                    echo '<br>Message: ';    echo $memo; 
+                                    echo' <br><br><a href ="inbox.php?bid='; echo "$result[BookID]"; echo'" name="Del" class="likeabutton">Delete message</a>';
+
+
                                 
                                 
                                 
@@ -73,34 +81,33 @@
                             }
                             echo '</div>';
                         }else{
-                            echo '<p style="color:white">no records</p>';
+                            echo '<div style="color:white">no messages</div>';
                         }
-                        $studentid=$_SESSION['studentID'];
-                        
+
+
+
+
                         if(isset($_GET['bid'])){
                             $bookid = $_GET['bid'];
 							$query = "DELETE  
 							FROM
-								`Borrowed_books`
+								`messages`
 							WHERE
 							BookID = '$bookid' AND StudentID = '$studentid'"  ;
-							$increasequantity = "UPDATE Books SET Quantity = Quantity + 1 WHERE BookID = '$bookid'";
-							$stmt1 = $conn->prepare($increasequantity);
 							// prepare query statement
 							$stmt = $conn->prepare($query);
 							// execute query
 							$stmt->execute();
 							if($stmt->execute() === true){
-								$stmt1->execute();
 								echo "<script>";
-								echo "alert('Done! Book returned sucessfully.');      
-									window.location.href='mybooks.php';
+								echo "alert('Done! Message deleted sucessfully.');      
+									window.location.href='inbox.php';
 									</script>";
 									return true;  
 							}else{
 								echo '<script>'; 
-								echo 'alert("Error! Unable to Cancel"); 
-									window.location.href="mybooks.php"; 
+								echo 'alert("Error! Unable to delete"); 
+									window.location.href="inbox.php"; 
 									</script>';
 									return false;
 							}		

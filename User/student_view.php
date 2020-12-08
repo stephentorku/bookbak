@@ -11,7 +11,7 @@
     <?php
     session_start();
     if(isset($_SESSION['fname'])){  
-        include_once('navbar.php');
+        include_once('navmenu.php');
     }
     else{    
         header("Location:loginPage.php");

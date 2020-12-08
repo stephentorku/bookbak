@@ -41,6 +41,17 @@ create table Borrowed_books(
  foreign key (StudentID) references Students(StudentID),
  foreign key (BookID) references Books(BookID) 
  );
+
+
+create table messages(
+ date_sent timestamp NOT NULL DEFAULT current_timestamp(),
+ topic varchar(100),
+ memo text,
+ StudentID int, 
+ BookID int,
+ foreign key (StudentID) references Students(StudentID),
+ foreign key (BookID) references Books(BookID) 
+ );
  
 create table Return_status(
 Date_returned date, 
