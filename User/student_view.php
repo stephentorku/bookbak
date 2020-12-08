@@ -18,6 +18,24 @@
     }?>
 
 
+    <div style = "display:block; margin:0 auto">
+    <form action="student_view.php" method="POST">
+        <label>Filter by:</label><br>
+        <select name = "category" id = "category" required>
+            <option value="all">Select Category</option>
+            <option value = "Science">Science</option>
+            <option value = "Maths">Maths</option>
+            <option value = "Business">Business</option>
+            <option value = "Arts">Arts</option>
+            <option value = "Language">Language</option>
+            <option value = "Technology">Technology</option>
+            <option value = "Leisure">Leisure</option>
+    </select>
+			<button type="submit" name="filter">Filter</button>
+    </form>
+    </div>
+
+
 <?php 
 						// include database and object files
 						include_once "database.php";
@@ -35,8 +53,19 @@
 						$category;
 						$author;
 						$quantity;
-						$book_status;
-                        $stmt = $book->allbooks();
+                        $book_status;
+                        
+                    if(isset($_POST['category']) && $_POST['category'] != "all"){
+                        $search = $_POST['category'];
+                        $query = "SELECT
+                                    *
+                                FROM
+                                Books 
+                                WHERE `Category` = '$search' ";
+                        // prepare query statement
+                        $stmt = $conn->prepare($query);
+                        // execute query
+                        $stmt->execute();
                         if($stmt->rowCount() > 0){
                             // Fill the table body with the values
                             echo '<div style="margin-top:100px">';
@@ -74,6 +103,49 @@
                         }else{
                             echo 'no records';
                         }
+
+                    }else{
+
+                        //else
+                        $stmt = $book->allbooks();
+                        if($stmt->rowCount() > 0){
+                            // Fill the table body with the values
+                            echo '<div style="margin-top:100px">';
+                            while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                $title = $result['Title'];       
+                                $category = $result["Category"];
+                                $author = $result["Author"];
+                                $quantity = $result["Quantity"];
+                                $book_status = $result["Book_Status"];
+                                
+
+
+                                echo '><div class="books" style="width:50%; margin-bottom:20px;">';
+                                
+                                    echo 'Title: ';    echo $title; 
+                                    echo '<br>Category: ';    echo $category; 
+                                    echo '<br>Author:';    echo $author; 
+                                    echo '<br>Quantity left: ';    echo $quantity;
+                                    echo '<br>Book Status: ';    echo $book_status; 
+                                    
+                                    if($quantity !=0){
+                                        echo "<br><button style = 'color:red'><a href ='borrow_book.php?bid=$result[BookID]' name='Del' style = 'color:red'> Borrow </a></button>";
+
+                                    }else{
+                                        echo '<br><br> Out of this book';
+                                    }
+
+                                
+                                
+                                
+                                echo '</div>';
+
+                            }
+                            echo '</div>';
+                        }else{
+                            echo 'no records';
+                        }
+                    }
 
                         
 ?>
