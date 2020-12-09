@@ -160,7 +160,7 @@ if(isset($_SESSION['fname'])){
                                 <label> Message </label>
                                 <textarea cols="75" rows="5" name="message"></textarea>
                             </div>
-                            <p><b>*This e-mail will be sent to all users who have booked this ride.</b><p>
+                            
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
