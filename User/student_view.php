@@ -111,7 +111,8 @@
                             }
                             echo '</div>';
                         }else{
-                            echo 'no records';
+                            echo '<div class="alert alert-danger nobooks">
+                            <strong>Hello!</strong> There are no '; echo $_POST['category']; echo' books in the library right now.</div>';
                         }
 
                     }else{
@@ -153,7 +154,8 @@
                             }
                             echo '</div>';
                         }else{
-                            echo 'no records';
+                            echo '<div class="alert alert-danger nobooks">
+                            <strong>Hello!</strong> There are no books in the library</div>';
                         }
                     }
 

@@ -161,7 +161,7 @@ if(isset($_SESSION['fname'])){
             </div>
         </div>
     </div>
-    <footer class="footer text-center"> 2020 &copy; ASHTRANSIT </footer>      
+    <footer class="footer text-center"> 2020 &copy; BOOKBAK </footer>      
 </div>
 <script>
 $('#Form').on('submit', function(e){

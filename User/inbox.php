@@ -39,7 +39,7 @@
                         $sent;
                         $topic;
                         $memo;
-                        $query =  "SELECT 
+                        $query =  "SELECT DISTINCT
                                     *
                                 FROM
                                     messages
@@ -51,7 +51,7 @@
                                 $stmt->execute();
                         if($stmt->rowCount() > 0){
                             // Fill the table body with the values
-                            echo '<div style="margin-top:100px">';
+                            echo '<div style="margin-top:100px; ">';
 							while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 								$title = $result['Title'];       
 								$category = $result["Category"];
@@ -62,15 +62,21 @@
                                 
 
 
-                                echo '><div class="books" style="width:50%; margin-bottom:20px;">';
-                                
+                                echo '<div class="books" style="width:40%; margin-bottom:20px;display:block; margin:0 auto; text-align:center">';
+                                    echo '<div class="message">';
+                                    echo 'Subject: ';    echo $topic; 
+                                    echo '<br>Message: ';    echo $memo; 
+                                    echo '</div><br><br>';
+                                    
                                     echo 'Title: ';    echo $title; 
                                     echo '<br>Category: ';    echo $category; 
                                     echo '<br>Author:';    echo $author; 
-                                    echo '<br>Quantity left: ';    echo $sent;
-                                    echo '<br>Subject: ';    echo $topic; 
-                                    echo '<br>Message: ';    echo $memo; 
-                                    echo' <br><br><a href ="inbox.php?bid='; echo "$result[BookID]"; echo'" name="Del" class="likeabutton">Delete message</a>';
+                                    echo '<br>Date received: ';    echo $sent;
+
+                                    
+
+
+                                    echo' <br><br><a href ="inbox.php?bid='; echo "$result[BookID]"; echo'" name="Del" class="red" style="padding:10px;">Delete message</a><br><br>';
 
 
                                 
@@ -81,7 +87,8 @@
                             }
                             echo '</div>';
                         }else{
-                            echo '<div style="color:white">no messages</div>';
+                            echo '<div class="alert alert-danger nobooks">
+                            <strong>Hello!</strong> You have no messages.</div>';
                         }
 
 

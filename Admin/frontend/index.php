@@ -230,7 +230,7 @@ include('navbar.php');
 
                 
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2020 &copy; ASHTRANSIT </footer>
+            <footer class="footer text-center"> 2020 &copy; BOOKBAK </footer>
         </div>
         <!-- /#page-wrapper -->
     </div>

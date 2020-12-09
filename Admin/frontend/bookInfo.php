@@ -127,7 +127,7 @@ if(isset($_SESSION['fname'])){
                         </ul>
                        
                             
-                            <a style="width:150px href="#" class="normal" data-toggle="modal" data-target="#editmodal">Send message</a>
+                            <a style="width:150px" class="normal" data-toggle="modal" data-target="#editmodal">Send message</a>
                         
                         </div>
                         </div>
@@ -172,7 +172,7 @@ if(isset($_SESSION['fname'])){
             </div>
         </div>
     </div>
-    <footer class="footer text-center"> 2020 &copy; ASHTRANSIT </footer>      
+    <footer class="footer text-center"> 2020 &copy; BOOKBAK </footer>      
 </div>
 
 <!-- jQuery -->

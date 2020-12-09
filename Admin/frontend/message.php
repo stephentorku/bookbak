@@ -29,7 +29,7 @@ $topic = $_POST['subject'];
 $memo = $_POST['message'];
 $bookid=$_POST['bookID'];
 $studentid=$_POST['studentID'];
-$sent = date('Y-m-d H:i:s');
+$sent = date('Y-m-d');
 
 $query = "INSERT INTO `messages`(`date_sent`, `topic`,`memo`,`StudentID`,`BookID`) VALUES('$sent','$topic','$memo','$studentid','$bookid')";
     

@@ -77,7 +77,8 @@
                             }
                             echo '</div>';
                         }else{
-                            echo '<p style="color:white">no records</p>';
+                            echo '<div class="alert alert-danger nobooks">
+                            <strong>Hello!</strong> You have borrowed no books.</div>';
                         }
                         $studentid=$_SESSION['studentID'];
                         

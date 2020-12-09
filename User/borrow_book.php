@@ -97,7 +97,7 @@
                                     
                                     <br> <div>Enter Return Date: </div>
                                     <form action="confirmborrow.php" method="POST"> 
-                                    <input type="date" id="txtDate" name="expdate" style="" placeholder="Enter Date">
+                                    <input type="date" id="txtDate" name="expdate" style="" placeholder="Enter Date" required>
                                     <?php echo '<br><br><button class="normal" type = "submit" name ="confirmborrow" style="width:150px; padding-bottom:35px"> Confirm Borrow </a></button>  
                                     </form>' ;
                                    
@@ -106,9 +106,7 @@
                                 echo '</div>';
 
                             }
-                            // $reducequantity = "UPDATE Books SET Quantity = Quantity - 1 WHERE BookID = '$bookid'";
-                            // $stmt1 = $conn->prepare($reducequantity);
-                            // $stmt1->execute();
+                            
                             echo '</div>';
                         }else{
                             echo 'no records';

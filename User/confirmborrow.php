@@ -28,19 +28,40 @@ $bookid = $_SESSION['bookid'];
 $curdate = date("Y-m-d");
 
 if(isset($date)){
-    $query = "INSERT INTO `Borrowed_books`(`Expected_ReturnDate`, `Date_Borrowed`,`StudentID`,`BookID`) VALUES('$date','$curdate','$studentid','$bookid')";
+
+    $checkquery="SELECT * FROM `Borrowed_books` WHERE StudentID = '$studentid' AND BookID = '$bookid'";
+    $stmt0 = $conn->prepare($checkquery);
+    $stmt0->execute();
+    $check=$stmt0->rowCount();
+    if($check==0){
+        $query = "INSERT INTO `Borrowed_books`(`Expected_ReturnDate`, `Date_Borrowed`,`StudentID`,`BookID`) VALUES('$date','$curdate','$studentid','$bookid')";
     
-    // prepare query statement
-    $stmt = $conn->prepare($query);
-    // execute query
-    $stmt->execute();
-    echo '<script>';
-    echo 'swal("Done!", "Book was sucessfully booked.", "success").then(function() {
-        window.location = "mybooks.php";
-    });
-    ;
-    </script>';
-    return $stmt;
+        // prepare query statement
+        $stmt = $conn->prepare($query);
+        // execute query
+        $stmt->execute();
+        $reducequantity = "UPDATE Books SET Quantity = Quantity - 1 WHERE BookID = '$bookid'";
+        $stmt1 = $conn->prepare($reducequantity);
+        $stmt1->execute();
+        echo '<script>';
+        echo 'swal("Done!", "Book was sucessfully borrowed.", "success").then(function() {
+            window.location = "mybooks.php";
+        });
+        ;
+        </script>';
+        return $stmt;
+
+
+    }else{
+        echo '<script>';
+        echo 'swal("Sorry!", "Seems like you have already borrowed this boook.", "success").then(function() {
+            window.location = "student_view.php";
+        });
+        ;
+        </script>';
+    }
+
+    
     
 
 }?>
