@@ -28,6 +28,7 @@
         header("Location:loginPage.php");
     } ?>
 
+<h1 style='text-align:center; color:white; font-family: BioRhyme, serif;'>Hi <?php echo $_SESSION['fname'];?></h1>
 
 <h1 style='text-align:center; color:white; font-family: BioRhyme, serif;'>HERE ARE ALL YOUR BORROWED BOOKS:</h1>
 

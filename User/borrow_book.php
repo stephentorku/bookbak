@@ -8,6 +8,13 @@
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script><link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@800&display=swap" rel="stylesheet"> 
 
+    <script language="JavaScript" type="text/javascript">
+	function checkDelete(){
+		return confirm('Are you sure?');
+	}
+	</script>
+
+
 </head>
 <body>
     <?php
@@ -98,7 +105,7 @@
                                     <br> <div>Enter Return Date: </div>
                                     <form action="confirmborrow.php" method="POST"> 
                                     <input type="date" id="txtDate" name="expdate" style="" placeholder="Enter Date" required>
-                                    <?php echo '<br><br><button class="normal" type = "submit" name ="confirmborrow" style="width:150px; padding-bottom:35px"> Confirm Borrow </a></button>  
+                                    <?php echo '<br><br><button onclick="return checkDelete()" class="normal" type = "submit" name ="confirmborrow" style="width:150px; padding-bottom:35px"> Confirm Borrow </a></button>  
                                     </form>' ;
                                    
                                 

@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All books</title>
     <link href="sview.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@800&display=swap" rel="stylesheet">
 
     <script language="JavaScript" type="text/javascript">
 	function checkDelete(){
-		return confirm('Are you sure?');
+		return confirm('Are you sure you want to delete?');
 	}
 	</script>
 
@@ -22,6 +24,9 @@
     else{    
         header("Location:loginPage.php");
     }?>
+<h1 style='text-align:center; color:white; font-family: BioRhyme, serif;'>Hi <?php echo $_SESSION['fname'];?></h1>
+
+<h1 style='text-align:center; color:white; font-family: BioRhyme, serif;'>REMINDERS FROM ADMIN:</h1>
 
 
 <?php 
@@ -66,9 +71,10 @@
                                 $topic = $result["topic"];
                                 $memo = $result["memo"];
                                 
+                                
 
-
-                                echo '<div class="books" style="width:40%; margin-bottom:20px;display:block; margin:0 auto; text-align:center">';
+                                echo '<div class="books" style="width:40%; margin-bottom:20px;display:block; margin:0 auto; text-align:center; overflow-y: scroll; max-height: 450px; ">';
+                                    echo'<strong>Message from Admin </strong>';
                                     echo '<div class="message">';
                                     echo 'Subject: ';    echo $topic; 
                                     echo '<br>Message: ';    echo $memo; 
@@ -76,7 +82,7 @@
                                     
                                     echo 'Title: ';    echo $title; 
                                     echo '<br>Category: ';    echo $category; 
-                                    echo '<br>Author:';    echo $author; 
+                                    echo '<br>Author: ';    echo $author; 
                                     echo '<br>Date received: ';    echo $sent;
 
                                     
