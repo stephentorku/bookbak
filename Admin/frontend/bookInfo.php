@@ -127,7 +127,7 @@ if(isset($_SESSION['fname'])){
                         </ul>
                        
                             
-                            <a style="width:150px href="#" class="normal" data-toggle="modal" data-target="#editmodal">Send email</a>
+                            <a style="width:150px href="#" class="normal" data-toggle="modal" data-target="#editmodal">Send message</a>
                         
                         </div>
                         </div>

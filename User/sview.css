@@ -6,7 +6,7 @@ body{
 .books{
    
     background-color: white;
-    color: red;
+    color: black;
     margin-bottom: 20px;
     display: block; 
     margin: auto;
@@ -21,4 +21,13 @@ body{
     background: ButtonFace; color: ButtonText;
     border-style: solid; border-width: 2px;
     border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+}
+
+.filter{
+    display:block;
+    margin:0 auto;
+    color:white;
+}
+form {
+    display: inline-block;
 }

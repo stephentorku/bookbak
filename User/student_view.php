@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All books</title>
     <link href="sview.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@800&display=swap" rel="stylesheet"> 
 
 </head>
 <body>
@@ -17,22 +19,22 @@
         header("Location:loginPage.php");
     }?>
 
-
-    <div style = "display:block; margin:0 auto">
-    <form action="student_view.php" method="POST">
-        <label>Filter by:</label><br>
-        <select name = "category" id = "category" required>
-            <option value="all">Select Category</option>
-            <option value = "Science">Science</option>
-            <option value = "Maths">Maths</option>
-            <option value = "Business">Business</option>
-            <option value = "Arts">Arts</option>
-            <option value = "Language">Language</option>
-            <option value = "Technology">Technology</option>
-            <option value = "Leisure">Leisure</option>
-    </select>
-			<button type="submit" name="filter">Filter</button>
-    </form>
+    <h1 style='text-align:center; color:white; font-family: BioRhyme, serif;'>HERE ARE ALL THE BOOKS WE HAVE:</h1>
+    <div style="margin-left:40%">
+        <form action="student_view.php" method="POST">
+            <label style="color:white;">Filter by:</label>
+            <select name = "category" id = "category" required>
+                <option value="all">Select Category</option>
+                <option value = "Science">Science</option>
+                <option value = "Maths">Maths</option>
+                <option value = "Business">Business</option>
+                <option value = "Arts">Arts</option>
+                <option value = "Language">Language</option>
+                <option value = "Technology">Technology</option>
+                <option value = "Leisure">Leisure</option>
+            </select>
+                <button type="submit" name="filter">Filter</button>
+        </form>
     </div>
 
 
@@ -78,7 +80,7 @@
                                 
 
 
-                                echo '><div class="books" style="width:50%; margin-bottom:20px;">';
+                                echo '><div  style="width:30%; margin-bottom:20px;">';
                                 
                                     echo 'Title: ';    echo $title; 
                                     echo '<br>Category: ';    echo $category; 
@@ -87,7 +89,7 @@
                                     echo '<br>Book Status: ';    echo $book_status; 
                                     
                                     if($quantity !=0){
-                                        echo "<br><button style = 'color:red'><a href ='borrow_book.php?bid=$result[BookID]' name='Del' style = 'color:red'> Borrow </a></button>";
+                                        echo "<br><button style = 'color:black'><a href ='borrow_book.php?bid=$result[BookID]' name='Del' style = 'color:black'> Borrow </a></button>";
 
                                     }else{
                                         echo '<br><br> Out of this book';
