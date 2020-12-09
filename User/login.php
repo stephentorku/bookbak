@@ -41,6 +41,7 @@ if($stmt->rowCount() > 0){
 }
 else{
     session_start();
+    $_SESSION['m_email']= $user->login;
     $_SESSION["error"] = $errorlogin;
     header("location: loginPage.php");
 }

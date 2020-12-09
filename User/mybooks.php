@@ -6,7 +6,13 @@
     <title>All books</title>
 	<link href="sview.css" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@800&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@800&display=swap" rel="stylesheet">
+	
+	<script language="JavaScript" type="text/javascript">
+	function checkDelete(){
+		return confirm('Are you sure?');
+	}
+	</script>
 
 </head>
 <body>
@@ -68,7 +74,7 @@
                                     echo '<br>Author: ';    echo $author;
                                     echo '<br>Book Status: ';    echo $book_status;
                                     echo '<br>Return Date: ';    echo $return_date;
-                                    echo' <br><br><a href ="mybooks.php?bid='; echo "$result[BookID]"; echo'" name="Del" class="normal" style="padding:10px">Return Book</a>';
+                                    echo' <br><br><a onclick="return checkDelete()" href ="mybooks.php?bid='; echo "$result[BookID]"; echo'" name="Del" class="normal" style="padding:10px">Return Book</a>';
                                 
                                 
                                 

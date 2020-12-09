@@ -13,8 +13,14 @@
   <link href="bootstrap/bootstrap.min.css" rel="stylesheet">
   <!--  Main CSS File -->
   <link href="css/index.css" rel="stylesheet">
+  <style> 
+  p{
+    padding-left:50px;
+  }
+</style>
  
 </head>
+
 
 <body>
 
@@ -45,6 +51,7 @@
     </div>
 
   </section><!-- End Intro Section -->
+
 
 
   <!-- ======= Footer ======= -->

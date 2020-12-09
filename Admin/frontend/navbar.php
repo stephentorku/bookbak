@@ -20,6 +20,11 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- color CSS -->
     <link href="css/colors/blue-dark.css" id="theme" rel="stylesheet">
+    <script language="JavaScript" type="text/javascript">
+	function checkDelete(){
+		return confirm('Are you sure?');
+	}
+	</script>
 </head>
 
 <body>
@@ -78,7 +83,7 @@
                     </li>
                     
                     <li>
-                        <a href="../../User/logout.php" class="waves-effect"><i class="fa fa-sign-out" 
+                        <a onclick="return checkDelete()" href="../../User/logout.php" class="waves-effect"><i class="fa fa-sign-out" 
                                 aria-hidden="true"></i><span class="hide-menu">&nbsp;&nbsp; Logout</span></a>
                     </li>
                     

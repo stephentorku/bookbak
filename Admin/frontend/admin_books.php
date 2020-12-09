@@ -24,6 +24,11 @@ if(isset($_SESSION['fname'])){
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@800&display=swap" rel="stylesheet">
+<script language="JavaScript" type="text/javascript">
+	function checkDelete(){
+		return confirm('Are you sure?');
+	}
+</script>
 <style>
     th {
          font-weight: 600;
@@ -97,7 +102,7 @@ if(isset($_SESSION['fname'])){
                             <td>{$row["Author"]}</td>
                             <td>{$row["Quantity"]}</td>
                             <td><form method= 'post' action ='admin_books.php'>
-                                <button class='red' type='submit' value ='$row[BookID]' name='delete'> 
+                                <button onclick='return checkDelete()' class='red' type='submit' value ='$row[BookID]' name='delete'> 
                                 Delete </button></form>
                             </td>
                                 

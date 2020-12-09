@@ -6,6 +6,12 @@
     <title>All books</title>
     <link href="sview.css" rel="stylesheet">
 
+    <script language="JavaScript" type="text/javascript">
+	function checkDelete(){
+		return confirm('Are you sure?');
+	}
+	</script>
+
 </head>
 <body>
     <?php
@@ -76,7 +82,7 @@
                                     
 
 
-                                    echo' <br><br><a href ="inbox.php?bid='; echo "$result[BookID]"; echo'" name="Del" class="red" style="padding:10px;">Delete message</a><br><br>';
+                                    echo' <br><br><a onclick="return checkDelete()" href ="inbox.php?bid='; echo "$result[BookID]"; echo'" name="Del" class="red" style="padding:10px;">Delete message</a><br><br>';
 
 
                                 

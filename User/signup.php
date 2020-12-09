@@ -44,6 +44,13 @@ else{
         $_SESSION["error"] = $errorEmail;
         header("location: signupPage.php");
     }
+    $_SESSION["m_fname"] = $user->fname;
+    $_SESSION["m_lname"] = $user->lname;
+    $_SESSION["m_gender"] = $user->gender;
+    $_SESSION["m_dob"] = $user->dob;
+    $_SESSION["m_yeargroup"] = $user->yeargroup;
+    $_SESSION["m_curriculum"] = $user->curriculum;
+    $_SESSION["m_email"] = $user->email;
 }
 
 print_r(json_encode($user_arr));

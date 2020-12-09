@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +39,7 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email" placeholder="Email">
+						<input class="input100" type="text" name="email" placeholder="Email" value="<?php echo isset($_SESSION['error']) ? $_SESSION['m_email'] : '' ?>">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -50,6 +53,14 @@
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
+					<?php
+							if(isset($_SESSION["error"])){
+								$error = $_SESSION["error"];
+								echo "<div class='alert alert-danger'>
+								<strong>Error!</strong> $error.
+							  </div>";
+							}
+                		?>
 					
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn" style="background-color: #c0392b;">
@@ -57,14 +68,7 @@
 						</button>
 					</div>
 
-					<div class="text-center p-t-12">
-						<span class="txt1">
-							Forgot
-						</span>
-						<a class="txt2" href="#">
-							Username / Password?
-						</a>
-					</div>
+					
 
 					<div class="text-center p-t-136">
 						<a class="txt2" href="signupPage.php">
@@ -104,3 +108,7 @@
 	}
 </style>
 </html>
+<?php
+	unset($_SESSION["error"]);
+	unset($_SESSION["m_email"]);
+?>

@@ -1,6 +1,12 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script language="JavaScript" type="text/javascript">
+	function checkDelete(){
+		return confirm('Are you sure?');
+	}
+	</script>
 
 
 <style>
@@ -163,7 +169,7 @@ $(function(){
             <li> <a id="len3" class="hoverable" href="../Admin/frontend/index.php"> Admin Dash</a> </li>' ;
             }
         ?>
-        <li><a id="len4" class="hoverable" href="logout.php">Logout</a></li>
+        <li><a onclick="return checkDelete()" id="len4" class="hoverable" href="logout.php">Logout</a></li>
       </ul>
     </div>
   </nav>
