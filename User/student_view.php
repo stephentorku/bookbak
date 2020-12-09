@@ -8,6 +8,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@800&display=swap" rel="stylesheet"> 
 
+<style>
+
+    select{
+        width:150px;
+        height:30px;
+        border-radius:10px;
+    }
+</style>
 </head>
 <body>
     <?php
@@ -20,11 +28,11 @@
     }?>
 
     <h1 style='text-align:center; color:white; font-family: BioRhyme, serif;'>HERE ARE ALL THE BOOKS WE HAVE:</h1>
-    <div style="margin-left:40%">
+    <div style="margin-left:40%;">
         <form action="student_view.php" method="POST">
-            <label style="color:white;">Filter by:</label>
+            <br><label style="color:white;">Filter by:</label>
             <select name = "category" id = "category" required>
-                <option value="all">Select Category</option>
+                <option value="all">All books</option>
                 <option value = "Science">Science</option>
                 <option value = "Maths">Maths</option>
                 <option value = "Business">Business</option>
@@ -33,7 +41,7 @@
                 <option value = "Technology">Technology</option>
                 <option value = "Leisure">Leisure</option>
             </select>
-                <button type="submit" name="filter">Filter</button>
+                <button class="filter" style="float:right" type="submit" name="filter">Filter</button>
         </form>
     </div>
 
@@ -70,7 +78,7 @@
                         $stmt->execute();
                         if($stmt->rowCount() > 0){
                             // Fill the table body with the values
-                            echo '<div style="margin-top:100px">';
+                            echo '<div style="margin-left:60px; margin-right:60px;" class ="row board">';
 							while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 								$title = $result['Title'];       
 								$category = $result["Category"];
@@ -80,19 +88,19 @@
                                 
 
 
-                                echo '><div  style="width:30%; margin-bottom:20px;">';
+                                echo '<div class="books col-md-3 shadow" style="width:20%;margin-left:40px;">';
                                 
                                     echo 'Title: ';    echo $title; 
                                     echo '<br>Category: ';    echo $category; 
-                                    echo '<br>Author:';    echo $author; 
+                                    echo '<br>Author: ';    echo $author; 
                                     echo '<br>Quantity left: ';    echo $quantity;
                                     echo '<br>Book Status: ';    echo $book_status; 
                                     
                                     if($quantity !=0){
-                                        echo "<br><button style = 'color:black'><a href ='borrow_book.php?bid=$result[BookID]' name='Del' style = 'color:black'> Borrow </a></button>";
+                                        echo "<br><br><button class='normal' style = 'color:black'><a href ='borrow_book.php?bid=$result[BookID]' name='Del' style = 'color:black'> Borrow </a></button>";
 
                                     }else{
-                                        echo '<br><br> Out of this book';
+                                        echo '<br><br> <div class="stock">Out of stock</div>';
                                     }
 
                                 
@@ -112,7 +120,7 @@
                         $stmt = $book->allbooks();
                         if($stmt->rowCount() > 0){
                             // Fill the table body with the values
-                            echo '<div style="margin-top:100px">';
+                            echo '<div style="margin-left:60px; margin-right:60px;" class ="row board">';
                             while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                 $title = $result['Title'];       
                                 $category = $result["Category"];
@@ -122,19 +130,19 @@
                                 
 
 
-                                echo '><div class="books" style="width:50%; margin-bottom:20px;">';
+                                echo '<div class="books col-md-3 shadow" style="width:20%;margin-left:40px;">';
                                 
                                     echo 'Title: ';    echo $title; 
                                     echo '<br>Category: ';    echo $category; 
-                                    echo '<br>Author:';    echo $author; 
+                                    echo '<br>Author: ';    echo $author; 
                                     echo '<br>Quantity left: ';    echo $quantity;
                                     echo '<br>Book Status: ';    echo $book_status; 
                                     
                                     if($quantity !=0){
-                                        echo "<br><button style = 'color:red'><a href ='borrow_book.php?bid=$result[BookID]' name='Del' style = 'color:red'> Borrow </a></button>";
+                                        echo "<br><br><button class='normal' style = 'color:black'><a href ='borrow_book.php?bid=$result[BookID]' name='Del' style = 'color:black'> Borrow </a></button>";
 
                                     }else{
-                                        echo '<br><br> Out of this book';
+                                        echo '<br><br> <div class="stock">Out of stock</div>';
                                     }
 
                                 

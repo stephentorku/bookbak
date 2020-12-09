@@ -5,19 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All books</title>
     <link href="sview.css" rel="stylesheet">
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script><link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@800&display=swap" rel="stylesheet"> 
 
 </head>
 <body>
     <?php
     session_start();
     if(isset($_SESSION['fname'])){  
-        include_once('navbar.php');
+        include_once('navmenu.php');
     }
     else{    
         header("Location:loginPage.php");
     }?>
-    
+    <h1 style='text-align:center; color:white; font-family: BioRhyme, serif;'>CHOOSE RETURN DATE AND CONFIRM BOOKING:</h1>
+
 
 
 <?php 
@@ -72,7 +74,7 @@
                             </script>
                             ";
                             // Fill the table body with the values
-                            echo '<div style="margin-top:100px">';
+                            echo '<div style="margin-top:50px">';
                             while($result = $stmty->fetch(PDO::FETCH_ASSOC)) {
                                 $BookID = $result['BookID'];
                                 $title = $result['Title'];       
@@ -84,7 +86,7 @@
                                 
                                 
 
-                                echo '><div class="books" style="width:50%; margin-bottom:20px;">';
+                                echo '<div class="books" style="width:20%; padding-bottom:20px;display:block; margin:0 auto; line-height:35px">';
                                 
                                     echo 'Title: ';    echo $title; 
                                     echo '<br>Category: ';    echo $category; 
@@ -93,10 +95,10 @@
                                     echo '<br>Book Status: ';    echo $book_status; ?>
                                     
                                     
-                                    <br> Enter Return Date: 
+                                    <br> <div>Enter Return Date: </div>
                                     <form action="confirmborrow.php" method="POST"> 
-                                    <input type="date" id="txtDate" name="expdate" class="form-control" placeholder="Enter Date">
-                                    <?php echo '<br><button type = "submit" name ="confirmborrow"> Confirm Borrow </a></button>  
+                                    <input type="date" id="txtDate" name="expdate" style="" placeholder="Enter Date">
+                                    <?php echo '<br><br><button class="normal" type = "submit" name ="confirmborrow" style="width:150px; padding-bottom:35px"> Confirm Borrow </a></button>  
                                     </form>' ;
                                    
                                 
@@ -104,9 +106,9 @@
                                 echo '</div>';
 
                             }
-                            $reducequantity = "UPDATE Books SET Quantity = Quantity - 1 WHERE BookID = '$bookid'";
-                            $stmt1 = $conn->prepare($reducequantity);
-                            $stmt1->execute();
+                            // $reducequantity = "UPDATE Books SET Quantity = Quantity - 1 WHERE BookID = '$bookid'";
+                            // $stmt1 = $conn->prepare($reducequantity);
+                            // $stmt1->execute();
                             echo '</div>';
                         }else{
                             echo 'no records';

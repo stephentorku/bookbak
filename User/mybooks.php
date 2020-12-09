@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All books</title>
-    <link href="sview.css" rel="stylesheet">
+	<link href="sview.css" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@800&display=swap" rel="stylesheet">
 
 </head>
 <body>
+
     <?php
     session_start();
 
@@ -20,6 +23,7 @@
     } ?>
 
 
+<h1 style='text-align:center; color:white; font-family: BioRhyme, serif;'>HERE ARE ALL YOUR BORROWED BOOKS:</h1>
 
 
 <?php 
@@ -45,7 +49,7 @@
                         $stmt = $book->getStudentBooks();
                         if($stmt->rowCount() > 0){
                             // Fill the table body with the values
-                            echo '<div style="margin-top:100px">';
+                            echo '<div style="margin-left:60px; margin-right:60px;" class ="row board">';
 							while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 								$title = $result['Title'];       
 								$category = $result["Category"];
@@ -57,14 +61,14 @@
 
                                 
 
-                                echo '><div class="books" style="width:50%; margin-bottom:20px;">';
+                                echo '<div class="books col-md-3 shadow" style="width:20%;margin-left:40px; padding-bottom:30px">';
                                 
                                     echo 'Title: ';    echo $title; 
                                     echo '<br>Category: ';    echo $category; 
-                                    echo '<br>Author:';    echo $author;
+                                    echo '<br>Author: ';    echo $author;
                                     echo '<br>Book Status: ';    echo $book_status;
                                     echo '<br>Return Date: ';    echo $return_date;
-                                    echo' <br><br><a href ="mybooks.php?bid='; echo "$result[BookID]"; echo'" name="Del" class="likeabutton">Return Book</a>';
+                                    echo' <br><br><a href ="mybooks.php?bid='; echo "$result[BookID]"; echo'" name="Del" class="normal" style="padding:10px">Return Book</a>';
                                 
                                 
                                 

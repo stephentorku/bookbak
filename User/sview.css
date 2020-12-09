@@ -12,7 +12,11 @@ body{
     margin: auto;
     border-radius: 10px;
     padding: 10px;
-    text-align: center;    
+    text-align: left;  
+    width:20%; 
+    margin-bottom:20px; 
+    margin-left:40px; 
+    border-left:10px solid #a1a1a1;  
 }
 
 .likeabutton {
@@ -31,3 +35,62 @@ body{
 form {
     display: inline-block;
 }
+
+
+.normal {
+    border-color: #58b747;
+    background-color: #58b747;
+    color: #fff;
+    -webkit-transition: all 150ms ease-in-out;
+    transition: all 150ms ease-in-out;
+    border-radius: 10px;
+    width:85px;
+    height:30px;
+    border-style:none;
+  }
+  .normal:hover {
+    box-shadow: 0 0 5px 0 #58b747 inset, 0 0 5px 2px #58b747;
+  }
+
+  .filter {
+    border-color: #a1a1a1;
+    background-color: #a1a1a1;
+    color: #fff;
+    -webkit-transition: all 150ms ease-in-out;
+    transition: all 150ms ease-in-out;
+    border-radius: 10px;
+    width:85px;
+    height:30px;
+    border-style:none;
+    margin-left:5px;
+  }
+  .filter:hover {
+    box-shadow: 0 0 5px 0 #a1a1a1 inset, 0 0 5px 2px #a1a1a1;
+  }
+
+
+  .board{
+    margin-top:50px; 
+    
+    overflow-y: scroll;
+    max-height: 450px; 
+    background-color:white; 
+   
+     padding-top:60px
+  }
+
+  .shadow {
+    background-color: #fff;
+    /* border-radius */
+  
+    /* box-shadow */
+    -webkit-box-shadow: rgba(0,0,0,0.8) 0px 0 10px;
+    -moz-box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+    box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+    }
+
+    .stock{
+        background-color: red;
+        width:150px;
+        padding:5px;
+    }
