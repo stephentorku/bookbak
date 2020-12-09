@@ -20,6 +20,7 @@ if(isset($_SESSION['fname'])){
 }
 
 ?>
+<link href="css/admin.css" id="theme" rel="stylesheet">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@800&display=swap" rel="stylesheet">
@@ -92,7 +93,7 @@ if(isset($_SESSION['fname'])){
                             <td>{$row["Author"]}</td>
                             <td>{$row["Quantity"]}</td>
                             <td><form method= 'post' action ='admin_books.php'>
-                                <button type='submit' value ='$row[BookID]' name='delete' style='background-color:#9c2222c9; border:1px solid black; color:white;'> 
+                                <button class='red' type='submit' value ='$row[BookID]' name='delete'> 
                                 Delete </button></form>
                             </td>
                                 
@@ -130,7 +131,7 @@ if(isset($_SESSION['fname'])){
                 ?>
             </div>
             <div class="row">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rideaddmodal">
+                <button type="button" class="normal" data-toggle="modal" data-target="#rideaddmodal" style="width:100px; margin-left:30px">
                     ADD BOOK
                 </button>
             </div>

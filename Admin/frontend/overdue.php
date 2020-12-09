@@ -21,7 +21,7 @@ include('navbar.php');
     }
     
     ?>
- 
+ <link href="css/admin.css" id="theme" rel="stylesheet">
  <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@800&display=swap" rel="stylesheet">
 <style>
@@ -117,7 +117,7 @@ include('navbar.php');
                                 <td>{$row["Title"]}</td>
                                 <td>{$row["Author"]}</td>
                                 <td>{$row["Category"]}</td>
-                                <td><button style = 'color:red'><a href ='bookInfo.php?info=$row[BookID]&sid=$row[StudentID]' name='Del' style = 'color:red'> Click to get Student info </a></button></td>                                  
+                                <td><button class='normal' style='width:180px'><a href ='bookInfo.php?info=$row[BookID]&sid=$row[StudentID]' name='Del' style = 'color:white'> Click to get Student info </a></button></td>                                  
                             </tr>";
                         }
                     echo  "</table>";

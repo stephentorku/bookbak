@@ -31,6 +31,44 @@ if(isset($_SESSION['fname'])){
         width: 20%;
         border-radius: 50%;
     }
+
+    .details{
+        width: 400px; 
+        display:block; 
+        margin:0 auto; 
+        background-color:white;
+        border: 1px solid black;
+        border-radius:10px;
+        padding-bottom:10px;
+    }
+    .normal {
+        border-color: #c0392b;
+        background-color: #c0392b;
+        color: #fff;
+        -webkit-transition: all 150ms ease-in-out;
+        transition: all 150ms ease-in-out;
+        border-radius: 10px;
+        width:100px;
+        height:30px;
+        border-style:none;
+        padding: 5px;
+        margin-left:15px;
+        }
+        .normal:hover {
+        box-shadow: 0 0 5px 0 #c0392b inset, 0 0 5px 2px #c0392b;
+        }
+
+        .shadow {
+        background-color: #fff;
+        /* border-radius */
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        /* box-shadow */
+        -webkit-box-shadow: rgba(0,0,0,0.8) 0px 0 10px;
+        -moz-box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+        box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+        }
 </style>
 
             <!-- Page Content -->
@@ -38,7 +76,7 @@ if(isset($_SESSION['fname'])){
     <div class="container-fluid">
         <div class="row bg-title">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h4 class="page-title" style="color:black; font-size: 16pt;">More Info: Book# <?php echo $_GET['info']?>  is borrowed by these students: </h4>
+                <h4 class="page-title" style="color:black; font-size: 16pt;">More Info: Book #<?php echo $_GET['info']?>  is borrowed by this student: </h4>
             </div>
         </div>
         <?php
@@ -72,25 +110,25 @@ if(isset($_SESSION['fname'])){
                     //All echos display html elements
                     while($row = $stmty->fetch(PDO::FETCH_ASSOC)) { 
                     echo '
-                        <div style="float:left"></div>
-                        <div class = "container-fluid col-md-4" style = "overflow-x: auto; ">
-                        <div class="card" style="width: 400px; display:block; margin:0 auto; background-color:white;">
-                        <img src="../../User/images/person.png" class="card-img-top" alt="..." style="width:80%">
+                        
+                        <div class = "container-fluid" >
+                        <div class="card details shadow" style="color:black; text-transform:capitalize" >
+                        
                         <div class="card-body">
-                            <h5 class="card-title">Student Details<br><br></h5>
+                            <h5 class="card-title" style="text-align:center">Student Details<br><br></h5>
                             <p class="card-text"></p>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Name: '; echo$row['fname']; echo' </li>
-                            <li class="list-group-item">Lastt name:'; echo$row['lname']; echo' </li>
-                            <li class="list-group-item">Year:'; echo$row['yeargroup']; echo' </li>
+                            <li class="list-group-item">Name: '; echo$row['fname']; echo' ';echo$row['lname']; echo' </li>
+                            <li class="list-group-item">Gender: '; echo$row['gender']; echo' </li>
+                            <li class="list-group-item">Year: '; echo$row['yeargroup']; echo' </li> 
                             <li class="list-group-item">Curriculum: '; echo$row['curriculum']; echo' </li>
-                            <li class="list-group-item">Email'; echo$row['email'];echo'</li>
+                            <li class="list-group-item" style="text-transform:none">Email: '; echo$row['email'];echo'</li>
                         </ul>
-                        <div class="card-body">
+                       
                             
-                            <a href="#" class="card-link" data-toggle="modal" data-target="#editmodal" >Send email</a>
-                        </div>
+                            <a style="width:150px href="#" class="normal" data-toggle="modal" data-target="#editmodal">Send email</a>
+                        
                         </div>
                         </div>
                     ';

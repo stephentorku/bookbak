@@ -14,7 +14,7 @@ if(isset($_SESSION['fname'])){
     header("location:../../User/LoginPage.php"); 
 }
 ?>
-
+<link href="css/admin.css" id="theme" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@800&display=swap" rel="stylesheet">
 <style>
@@ -35,6 +35,9 @@ if(isset($_SESSION['fname'])){
         -moz-box-shadow: rgba(0,0,0,0.8) 0 0 10px;
         box-shadow: rgba(0,0,0,0.8) 0 0 10px;
         }
+    a{
+        color:white;
+    }
 
 </style>
 
@@ -88,11 +91,11 @@ if(isset($_SESSION['fname'])){
                         <td>{$row["lname"]}</td>
                         <td>{$row["email"]}</td>
                         <td>{$row["role"]}</td>
-                        <td><form method= 'post' action ='users.php' id='form'><button type='submit' name='edit' value ="; echo $row["StudentID"]; 
+                        <td><form method= 'post' action ='users.php' id='form'><button class='normal' type='submit' name='edit' value ="; echo $row["StudentID"]; 
                         echo ">Store ID</button></form></td>
-                        <td><button type='submit' data-toggle='modal' data-target='#editmodal'> Edit</button></td>
-                        <td><button ><a href ='users.php?delete=$row[StudentID]' name='Del'> Delete </a></button></td>
-                        <td><button ><a href ='userinfo.php?sid=$row[StudentID]' name='sid'>View books</a></button></td>
+                        <td><button  class='normal' type='submit' data-toggle='modal' data-target='#editmodal'> Edit</button></td>
+                        <td><button class='red' style='style=color:white'><a href ='users.php?delete=$row[StudentID]' name='Del'> Delete </a></button></td>
+                        <td><button class='normal' ><a  href ='userinfo.php?sid=$row[StudentID]' name='sid'>View books</a></button></td>
                             
                     </tr>";}
             echo  "</table>";

@@ -1,0 +1,29 @@
+.red {
+  border-color: red;
+  background-color:red;
+  color: #fff;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+  border-radius: 10px;
+  width:85px;
+  height:30px;
+  border-style:none;
+}
+.red:hover {
+  box-shadow: 0 0 5px 0 red inset, 0 0 5px 2px red;
+}
+
+.normal {
+  border-color: #c0392b;
+  background-color: #c0392b;
+  color: #fff;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+  border-radius: 10px;
+  width:85px;
+  height:30px;
+  border-style:none;
+}
+.normal:hover {
+  box-shadow: 0 0 5px 0 #c0392b inset, 0 0 5px 2px #c0392b;
+}
