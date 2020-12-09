@@ -29,6 +29,10 @@ if(isset($_SESSION['fname'])){
          color: white;
          background-color: #9c2222c9;
     }
+
+    td{
+            color:black
+    }
 </style>
 
             <!-- Page Content -->

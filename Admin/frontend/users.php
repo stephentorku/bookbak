@@ -38,6 +38,9 @@ if(isset($_SESSION['fname'])){
     a{
         color:white;
     }
+    td{
+            color:black
+        }
 
 </style>
 

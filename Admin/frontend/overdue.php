@@ -42,6 +42,9 @@ include('navbar.php');
         -moz-box-shadow: rgba(0,0,0,0.8) 0 0 10px;
         box-shadow: rgba(0,0,0,0.8) 0 0 10px;
         }
+        td{
+            color:black
+        }
 
 
     

@@ -44,6 +44,10 @@ if(isset($_SESSION['fname'])){
         box-shadow: rgba(0,0,0,0.8) 0 0 10px;
         }
 
+        td{
+            color:black
+        }
+
 
 </style>
 

@@ -31,6 +31,41 @@ if(isset($_SESSION['fname'])){
         width: 20%;
         border-radius: 50%;
     }
+
+    .nobooks{
+        width:40%; 
+        display:block;
+        margin: 0 auto;
+        margin-top:50px; 
+        background-color: #c0392b;
+        font-size:20px;
+        text-align: center;
+        border-radius:10px;
+    }
+
+    .details{
+        width:30%;
+        border-radius:10px;
+        display:block;
+        margin:0 auto;
+        margin-top:100px;
+
+    }
+    li{
+        border:0px ;
+    }
+
+    .shadow {
+        background-color: #fff;
+        /* border-radius */
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        /* box-shadow */
+        -webkit-box-shadow: rgba(0,0,0,0.8) 0px 0 10px;
+        -moz-box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+        box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+        }
 </style>
 
             <!-- Page Content -->
@@ -73,11 +108,11 @@ if(isset($_SESSION['fname'])){
                     while($row = $stmty->fetch(PDO::FETCH_ASSOC)) { 
                     echo '
                         
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">BookID: '; echo$row['BookID']; echo' </li>
+                        <ul class="list-group list-group-flush details shadow">
+                            <li style="border-top-left-radius:20px;border-top-right-radius:20px" class="list-group-item">BookID: '; echo$row['BookID']; echo' </li>
                             <li class="list-group-item">Title:'; echo$row['Title']; echo' </li>
                             <li class="list-group-item">Author:'; echo$row['Author']; echo' </li>
-                            <li class="list-group-item">Category: '; echo$row['Category']; echo' </li>
+                            <li style="border-bottom-left-radius:20px;border-bottom-right-radius:20px" class="list-group-item">Category: '; echo$row['Category']; echo' </li>
                             
                         </ul>
                         
@@ -88,8 +123,8 @@ if(isset($_SESSION['fname'])){
                     echo  "</table>";
                 }else{
                     echo '
-                    <div class="alert alert-danger" style="margin: 10px 0 0 0; background-color: rgb(151, 17, 17);">
-                    <strong>something went wrong :(  !</strong> .
+                    <div class="alert alert-danger nobooks">
+                    <strong>Seems like this student has not borrowed any books</strong>
                     </div>';
                 }
             }

@@ -21,6 +21,7 @@ include('navbar.php');
     }
     
     ?>
+<link href="css/admin.css" id="theme" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@800&display=swap" rel="stylesheet"> 
 
@@ -29,7 +30,7 @@ include('navbar.php');
          font-weight: 600;
          font-size: 12pt;
          color: white;
-         background-color: #9c2222c9;
+         background-color: #c0392b;
     }
 
     .white-box{
@@ -60,6 +61,10 @@ include('navbar.php');
         -webkit-box-shadow: rgba(0,0,0,0.8) 0px 0 10px;
         -moz-box-shadow: rgba(0,0,0,0.8) 0 0 10px;
         box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+        }
+
+        td{
+            color:black
         }
 
 </style>
@@ -115,7 +120,7 @@ include('navbar.php');
                                     Registered Users:</h5>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <h3 class="counter text-right m-t-15 text-danger" style="color: "><?php
+                                    <h3 class="counter text-right m-t-15 text-danger" style="color: #1f2f46;"><?php
                                     echo $UserRowCount;?></h3><!-- query to count all users -->
                                 </div> 
                             </div>
@@ -189,15 +194,15 @@ include('navbar.php');
                         </div>
                     </div>
                     <table class="table table-dark table-striped">';
-                    echo '<thead>
+                    echo '<thead style="border-radius:10px">
                         <tr>
-                            <th> Borrowed by (Student ID):
+                            <th stye="border-top-left-radius:10px;"> Borrowed by (Student ID):</th>
                             <th>Due Date</th>
                             <th>Date borrowed</th>
                             <th>Book Title</th>
                             <th>Author</th>
                             <th>Category</th>
-                            <th> </th>   
+                            <th style="border-top-right-radius:10px"> </th>   
                         </tr>
                         </thead>'; 
                     // Fill the table body with the values
@@ -209,7 +214,7 @@ include('navbar.php');
                                 <td>{$row["Title"]}</td>
                                 <td>{$row["Author"]}</td>
                                 <td>{$row["Category"]}</td>
-                                <td><button style = 'color:red'><a href ='bookInfo.php?info=$row[BookID]&sid=$row[StudentID]' name='Del' style = 'color:red'> Click to get Student info </a></button></td>                                  
+                                <td><button class='normal' style='width:180px'><a href ='bookInfo.php?info=$row[BookID]&sid=$row[StudentID]' name='Del' style = 'color:white'> Click to get Student info </a></button></td>                                  
                             </tr>";
                         }
                     echo  "</table>";
