@@ -26,7 +26,7 @@
     }?>
 <h1 style='text-align:center; color:white; font-family: BioRhyme, serif;'>Hi <?php echo $_SESSION['fname'];?></h1>
 
-<h1 style='text-align:center; color:white; font-family: BioRhyme, serif;'>REMINDERS FROM ADMIN:</h1>
+
 
 
 <?php 
@@ -60,9 +60,15 @@
                                 $stmt = $conn->prepare($query);
                                 // execute query
                                 $stmt->execute();
+
                         if($stmt->rowCount() > 0){
+
+                            echo "<h1 style='text-align:center; color:white; font-family: BioRhyme, serif;'>"; echo'('; echo $stmt->rowCount(); echo ')'; echo " REMINDERS FROM ADMIN:</h1>";
+
+
                             // Fill the table body with the values
-                            echo '<div style="margin-top:100px; ">';
+                            echo '<div style="margin-top:60px; overflow-y: scroll; max-height: 450px; margin-bottom:100px;">';
+                            
 							while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 								$title = $result['Title'];       
 								$category = $result["Category"];
@@ -72,8 +78,8 @@
                                 $memo = $result["memo"];
                                 
                                 
-
-                                echo '<div class="books" style="width:40%; margin-bottom:20px;display:block; margin:0 auto; text-align:center; overflow-y: scroll; max-height: 450px; ">';
+                                echo '<div style="height:50px"></div>';
+                                echo '<div class="books" style="width:40%; margin-bottom:20px;display:block; margin:0 auto; text-align:center;">';
                                     echo'<strong>Message from Admin </strong>';
                                     echo '<div class="message">';
                                     echo 'Subject: ';    echo $topic; 
@@ -90,14 +96,10 @@
 
                                     echo' <br><br><a onclick="return checkDelete()" href ="inbox.php?bid='; echo "$result[BookID]"; echo'" name="Del" class="red" style="padding:10px;">Delete message</a><br><br>';
 
-
-                                
-                                
-                                
                                 echo '</div>';
 
                             }
-                            echo '</div>';
+                            echo '</div><br>';
                         }else{
                             echo '<div class="alert alert-danger nobooks">
                             <strong>Hello!</strong> You have no messages.</div>';
