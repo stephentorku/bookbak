@@ -67,7 +67,7 @@
 
 
                             // Fill the table body with the values
-                            echo '<div style=" overflow-y: scroll; max-height: 450px; margin-bottom:100px;">';
+                            echo '<div style=" overflow-y: scroll; max-height: 450px; margin-bottom:100px; width:70%; display:block; margin:0 auto;">';
                             
 							while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 								$title = $result['Title'];       

@@ -54,7 +54,7 @@ if(isset($date)){
 
     }else{
         echo '<script>';
-        echo 'swal("Sorry!", "Seems like you have already borrowed this boook.", "success").then(function() {
+        echo 'swal("Sorry!", "Seems like you have already borrowed this boook.", "error").then(function() {
             window.location = "student_view.php";
         });
         ;

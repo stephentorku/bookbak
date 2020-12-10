@@ -48,7 +48,9 @@ if(isset($_SESSION['fname'])){
         border-radius:10px;
         display:block;
         margin:0 auto;
-        margin-top:100px;
+        margin-top:50px;
+        margin-bottom:50px;
+
 
     }
     li{
@@ -105,13 +107,14 @@ if(isset($_SESSION['fname'])){
             
                 if($stmty->rowCount() > 0){
                     //All echos display html elements
+                    echo '<div style=" overflow-y: scroll; max-height: 340px; margin-bottom:100px; width:70%; display:block; margin:0 auto;">';
                     while($row = $stmty->fetch(PDO::FETCH_ASSOC)) { 
                     echo '
                         
                         <ul class="list-group list-group-flush details shadow">
                             <li style="border-top-left-radius:20px;border-top-right-radius:20px" class="list-group-item">BookID: '; echo$row['BookID']; echo' </li>
-                            <li class="list-group-item">Title:'; echo$row['Title']; echo' </li>
-                            <li class="list-group-item">Author:'; echo$row['Author']; echo' </li>
+                            <li class="list-group-item">Title: '; echo$row['Title']; echo' </li>
+                            <li class="list-group-item">Author: '; echo$row['Author']; echo' </li>
                             <li style="border-bottom-left-radius:20px;border-bottom-right-radius:20px" class="list-group-item">Category: '; echo$row['Category']; echo' </li>
                             
                         </ul>
@@ -120,7 +123,7 @@ if(isset($_SESSION['fname'])){
                     // Fill the table body with the values
                     
                         }
-                    echo  "</table>";
+                        echo '</div>';
                 }else{
                     echo '
                     <div class="alert alert-danger nobooks">

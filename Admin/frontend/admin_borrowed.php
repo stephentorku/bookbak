@@ -108,7 +108,7 @@ if(isset($_SESSION['fname'])){
                         return true;  
                 }else{
                     echo '<script>';
-                    echo 'swal("Unable to Delete!", "Hmm...It seems this ride has been booked by a user.", "error").then(function() {
+                    echo 'swal("Unable to Delete!", "Hmm...It seems this book has been borrowed by a user.", "error").then(function() {
                         window.location = "admin_books.php";
                     });
                         </script>';

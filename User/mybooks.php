@@ -112,7 +112,7 @@
 									return true;  
 							}else{
 								echo '<script>'; 
-								echo 'alert("Error! Unable to Cancel"); 
+								echo 'alert("Error! Unable to return"); 
 									window.location.href="mybooks.php"; 
 									</script>';
 									return false;

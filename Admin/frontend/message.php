@@ -48,7 +48,7 @@ if($stmt->execute()){
     </script>';
 }else{
     echo '<script defer>';
-    echo 'swal("Something went wrong!", "Sorry, Book insertion failed!", "error").then(function() {
+    echo 'swal("Something went wrong!", "Sorry, Message was not sent!", "error").then(function() {
         window.location = "overdue.php";
     });
     </script>';
