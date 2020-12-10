@@ -28,9 +28,8 @@
         header("Location:loginPage.php");
     } ?>
 
-<h1 style='text-align:center; color:white; font-family: BioRhyme, serif;'>Hi <?php echo $_SESSION['fname'];?></h1>
+<h1 style='text-align:center; color:white; font-family: BioRhyme, serif;'>Hi <?php echo $_SESSION['fname'];?>,</h1>
 
-<h1 style='text-align:center; color:white; font-family: BioRhyme, serif;'>HERE ARE ALL YOUR BORROWED BOOKS:</h1>
 
 
 <?php 
@@ -55,6 +54,8 @@
                         $borrow_date;
                         $stmt = $book->getStudentBooks();
                         if($stmt->rowCount() > 0){
+							echo "<h1 style='text-align:center; color:white; font-family: BioRhyme, serif;'>HERE ARE ALL YOUR BORROWED BOOKS"; echo' ('; echo $stmt->rowCount(); echo '):'; echo "</h1>";
+
                             // Fill the table body with the values
                             echo '<div style="margin-left:60px; margin-right:60px;" class ="row board">';
 							while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {

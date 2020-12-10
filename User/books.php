@@ -7,7 +7,7 @@ class books{
     public $title;
     public $category;
     public $author;
-    public $quanitity;
+    public $quantity;
     public $book_status;
 
     public function __construct($db){

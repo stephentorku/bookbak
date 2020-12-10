@@ -129,7 +129,7 @@ if(isset($_SESSION['fname'])){
                         return true;  
                 }else{
                     echo '<script>';
-                    echo 'swal("Unable to Delete!", "Hmm...It seems this ride has been booked by a user.", "error").then(function() {
+                    echo 'swal("Unable to Delete!", "Hmm...It seems this book has been borrowed by a user.", "error").then(function() {
                         window.location = "admin_books.php";
                     });
                         </script>';
@@ -198,7 +198,7 @@ if(isset($_SESSION['fname'])){
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" name="insertbook" class="btn btn-primary">Add Ride</button>
+            <button type="submit" name="insertbook" class="btn btn-primary">Add Book</button>
         </div>
     </form>
 

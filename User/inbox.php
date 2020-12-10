@@ -24,7 +24,7 @@
     else{    
         header("Location:loginPage.php");
     }?>
-<h1 style='text-align:center; color:white; font-family: BioRhyme, serif;'>Hi <?php echo $_SESSION['fname'];?></h1>
+<h1 style='text-align:center; color:white; font-family: BioRhyme, serif;'>Hi <?php echo $_SESSION['fname'];?>,</h1>
 
 
 
@@ -67,7 +67,7 @@
 
 
                             // Fill the table body with the values
-                            echo '<div style="margin-top:60px; overflow-y: scroll; max-height: 450px; margin-bottom:100px;">';
+                            echo '<div style=" overflow-y: scroll; max-height: 450px; margin-bottom:100px;">';
                             
 							while($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 								$title = $result['Title'];       

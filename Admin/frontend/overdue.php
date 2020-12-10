@@ -45,6 +45,16 @@ include('navbar.php');
         td{
             color:black
         }
+        .nobooks{
+        width:40%; 
+        display:block;
+        margin: 0 auto;
+        margin-top:50px; 
+        background-color: #c0392b;
+        font-size:20px;
+        text-align: center;
+        border-radius:10px;
+    }
 
 
     
@@ -126,8 +136,8 @@ include('navbar.php');
                     echo  "</table>";
                 }
                 else{
-                    echo' <div class="alert alert-danger" style="margin: 60px 0 0 0;">
-                    <strong>Hello!</strong> No books due today.</div>';
+                    echo' <div class="alert alert-danger nobooks">
+                    <strong>Hello!</strong> No overdue books.</div>';
                 }
                     ?>
                     
