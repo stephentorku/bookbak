@@ -3,7 +3,7 @@
 define("host","localhost");
 define("db_name","ST40212022");
 define("username", "root");
-define("password", getenv('MYSQLPASS') ? getenv('MYSQLPASS') : "mysql");
+define("password", getenv('MYSQLPASS') ? getenv('MYSQLPASS') : "");
 
 
 
