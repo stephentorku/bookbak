@@ -61,3 +61,5 @@ BookID int,
 foreign key (StudentID) references Students(StudentID),
 foreign key (BookID) references Books(BookID)
 );
+
+INSERT INTO `Students` (`StudentID`, `fname`, `lname`, `dob`, `gender`, `yeargroup`, `curriculum`, `email`, `password`, `role`) VALUES (NULL, 'SchoolBoy', 'Q', '2020-12-01', 'male', '10', 'cambridge', 'sq@gmail.com', 'MQ==', '0');

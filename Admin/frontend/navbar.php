@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>AshTransit</title>
+    <title>BookBak</title>
     
     <!-- Bootstrap Core CSS -->
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
